@@ -83,25 +83,6 @@ alias php56="php"
 # testing
 # ---------------------- #
 alias psr="vendor/bin/php-cs-fixer fix -vvv --diff --dry-run;"
-# ---------------------- #
-# SSH
-# ---------------------- #
-# ssh into veare
-function sh {
-  echo "ssh into df server:"
-  ssh $ssh_veare;
-}
-# project ssh veare
-alias sshcopra="ssh lukas@new.copra-system.de"
-
-# SSH Copy
-alias shcp=sshcp
-function sshcp {
-  server="$ssh_veare:~/"
-  echo "copying $1 to $server$2"
-  scp $1 $server$2
-}
-
 
 # ---------------------- #
 # Run Build script
@@ -281,9 +262,4 @@ function gh() {
   branch=${branch##refs/heads/}
   giturl=$giturl$branch
   open $giturl
-}
-
-# add ignore file from github to this repo
-function ignore {
-	wget https://raw.githubusercontent.com/lukasoppermann/knowledge-base/master/project-template/.gitignore
 }
