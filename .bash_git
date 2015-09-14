@@ -1,0 +1,62 @@
+# git alias
+alias status="git status"
+alias st="git status --ignore-submodules"
+alias commit="git commit"
+alias clone="git clone"
+cur_git_branch() {
+	git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
+}
+# push
+function push {
+  if [[ $1 == "tags" || $1 == "tag" ]]; then
+    git push --tags origin $(cur_git_branch)
+  elif [[ ($1 == "-f" && ($2 == "tag" || $2 == "tags")) ]]; then
+    git push -f --tags origin $(cur_git_branch)
+  elif [[ ($1 == "tag" || $1 == "tags") && $2 == "-f" ]]; then
+    git push -f --tags origin $(cur_git_branch)
+	elif [[ ! -z "$1" ]]; then
+    git push $1 $(cur_git_branch)
+  else
+    git push origin $(cur_git_branch)
+  fi
+}
+
+alias pull="git pull"
+alias rebase="git rebase -i"
+alias continue="git rebase --continue"
+alias add="git add"
+alias ga="git add -p"
+alias +="git add -p"
+alias add.="git add --all"
+alias reset="git reset -p"
+alias staged="git diff --staged"
+
+function cm {
+	msg=${*:1}
+	if [[ -z "$msg" ]]; then
+	read -e -p "Enter a commit message: " message
+		msg=$message
+	fi
+	git commit -m "$msg"
+}
+
+alias ck="git checkout"
+alias b="git branch"
+alias ba="git branch -a"
+alias cherry="git cherry-pick"
+alias dif=diff
+alias diff="git diff"
+alias remote="git remote add"
+alias fetch="git fetch"
+alias conflicts="git diff --name-only --diff-filter=U"
+alias fix="git diff --name-only | uniq | xargs mate"
+alias discard="git stash save --keep-index; git stash drop"
+alias tag="git tag"
+alias tags="git tag"
+alias mtool="git mergetool"
+
+alias grm="git rm --cached -r"
+
+# alias log="git log \$(cur_git_branch) --decorate --graph --oneline --date-order"
+alias log="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %C(Normal)%s%Creset %C(white Dim)(%cr) %Creset' --abbrev-commit"
+alias hlog="git reflog"

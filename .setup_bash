@@ -1,0 +1,4 @@
+# Load the shell dotfiles, and then some:
+for file in $(find $setupDir -name ".bash_*" -maxdepth 1); do
+	source "$file"
+done;
