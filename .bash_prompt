@@ -40,7 +40,7 @@ export BOLD
 export RESET
 
 function parse_git_dirty() {
-	[[ $(git status 2> /dev/null | tail -n1) != *"working directory clean"* ]] && echo "*"
+	[[ -n "$(git status -s 2> /dev/null)" ]] && echo "*"
 }
 
 function parse_git_branch() {
@@ -55,14 +55,6 @@ dir3="${PWD%/*/*/*}"
 DIRNAME="${dir3##*/}/${dir2##*/}/${dir1##*/}/$base1"
 PROMPT_COMMAND='echo -ne "\033]0; /$DIRNAME\007"'
 
-
-# Use Git’s colored diff when available
-hash git &>/dev/null
-if [ $? -eq 0 ]; then
-	function diff() {
-		git diff --no-index --color-words "$@"
-	}
-fi
 
 export PS1="\[${BOLD}${MAGENTA}\]\u \[$GREEN\]\w\[$RESET\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" [\")\[$ORANGE\]\$(parse_git_branch)\[$RESET\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \"]\") \[$ORANGE\]❯ \[$RESET\]"
 export PS2="\[$ORANGE\]→ \[$RESET\]"

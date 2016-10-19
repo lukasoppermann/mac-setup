@@ -4,15 +4,44 @@
 BASE_DIR="/Users/lukasoppermann"
 POSTS_DIR="$BASE_DIR/Code/veare/storage/app/articles"
 function post {
-    echo -e "# $1" >> $POSTS_DIR/$(date '+%y%m%d')-${1// /-}.md
+    name=$(echo $1 | tr '[:upper:]' '[:lower:]')
+    name=$(echo $name | xargs)
+    echo -e "# $1" >> $POSTS_DIR/$(date '+%y%m%d')-${name// /-}.md
 }
 function draft {
-    echo -e "# $1" >> $POSTS_DIR/articles/-${1// /-}.md
+    name=$(echo $1 | tr '[:upper:]' '[:lower:]')
+    name=$(echo $name | xargs | sed "s/[^[:alpha:] -]//g")
+    echo -e "# $1" >> $POSTS_DIR/-${name// /-}.md
+}
+function publish {
+
+    if [[ ! -z $1 ]]; then
+        files=($(find $POSTS_DIR -iname "[a-z-]*.md"))
+        post=$(echo ${files[$1]} | sed 's/.*\/-//')
+
+        if [ -e "$POSTS_DIR/-$post" ]; then
+            mv $POSTS_DIR/-$post $POSTS_DIR/$(date +%y%m%d)-$post
+            echo -e "Renamed \033[33m $post \033[0mto \033[33m$(date +%y%m%d)-$post\\n\033[0m"
+            return
+        fi
+
+        post=$(echo ${files[$1]} | sed 's/.*\///')
+        if [ -e "$POSTS_DIR/$post" ]; then
+            mv $POSTS_DIR/$post $POSTS_DIR/$(date +%y%m%d)-$post
+            echo -e "Renamed \033[33m $post \033[0mto \033[33m$(date +%y%m%d)-$post\\n\033[0m"
+            return
+        fi
+
+        echo -e "\033[33m\\nPost with id ${1} not found.\\n\033[0m"
+        return
+    fi
+    echo -e "\033[33m\\nPlease provide the id of the post you want to publish.\\n\033[0m"
+
 }
 function posts {
     # check if user provided argument $1 && if this key exists
     i=0;
-    for post in $(find $POSTS_DIR -iname "-*.md"); do
+    for post in $(find $POSTS_DIR -iname "[a-z-]*.md"); do
         if [[ ! -z $1 && $i = $1 ]]; then
             atom $post
             return
@@ -24,32 +53,44 @@ function posts {
 
     i=0;
     for post in ${posts[@]}; do
-        p=$(echo $post | sed 's/.*\/-//')
+        p=$(echo $post | sed 's/.*\/-//' | sed 's/.*\///' | sed 's/\.md//' | sed 's/-/ /g')
         echo -e "\033[33m${i} \033[0m${p}";
         (( i++ ))
     done;
     echo -e ""
     return;
 }
+
 # ---------------------- #
 # open bash files
 # ---------------------- #
-alias profile="$EDITOR ~/.bash_profile"
-alias aliases="$EDITOR $dotFilePath.aliases;"
-alias gits="$EDITOR $dotFilePath.gits"
-alias exports="$EDITOR $dotFilePath.exports"
+alias profile="atom ~/.bash_profile"
+alias aliases="atom $setupDir/.bash_aliases;"
+alias gits="atom $setupDir/.bash_git"
 alias kdiff="git mergetool -y -t Kaleidoscope"
+
+# ---------------------- #
+# docker
+# ---------------------- #
+alias dr="docker"
+alias dc="docker-compose"
+alias dm="docker-machine"
+alias dckr="docker"
+function dockerip {
+    docker inspect --format='{{.Name}} - {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -aq)
+}
 
 # ---------------------- #
 # project directories
 # ---------------------- #
 alias veare="cd ~/code/veare"
-alias fs="cd ~/code/formandsystem-cms"
+alias fs="cd ~/code/formandsystem"
 alias cms="cd ~/code/formandsystem-cms"
+alias fs-cms="cd ~/code/fs-cms"
 alias api="cd ~/code/formandsystem-api"
 alias mark="cd ~/code/mark"
 alias copra="cd ~/code/copra"
-alias bosch="cd ~/code/Bosch\ Git"
+alias bosch="cd ~/code/bosch-git"
 # ---------------------- #
 # general directories
 # ---------------------- #
@@ -58,7 +99,6 @@ alias co="cd ~/code"
 alias code="cd ~/code"
 alias pr="cd ~/Projects"
 alias setup=environment
-alias env=environment
 alias environment="cd ~/code/_environment"
 alias packages="cd ~/code/_packages"
 
@@ -66,19 +106,31 @@ alias packages="cd ~/code/_packages"
 # dev & laravel
 # ---------------------- #
 alias bowerup="bower cache clean && bower update -f"
+alias php='php -dzend_extension=/usr/local/opt/php70-xdebug/xdebug.so'
 alias art="php artisan"
 alias seed="php artisan db:seed"
-alias phpunit="vendor/bin/phpunit -v --stderr"
-alias unit="vendor/bin/phpunit -v --stderr"
+alias reset="php artisan migrate:reset"
+alias cc="php artisan cache:clear"
+alias cl="> storage/logs/laravel.log"
+alias phpunit="php vendor/bin/phpunit -vvv --stderr --report-useless-tests --coverage-text --colors"
+alias unit="php vendor/bin/phpunit -v --stderr"
 alias phpspec="vendor/bin/phpspec"
 alias spec="vendor/bin/phpspec run -v"
+alias humbug="vendor/bin/humbug && vendor/bin/humbug stats --skip-killed=yes -vvv"
 alias dump="composer dump-autoload -o & art clear-compiled"
+alias slow="slow-deps"
 alias vm="ssh vagrant@127.0.0.1 -p 2222"
 alias h="homestead"
+alias homestead-edit="atom ~/.homestead/Homestead.yaml"
 alias v="vagrant"
 alias vst="vagrant global-status"
+alias vup="vagrant up"
+alias vre="vagrant reload"
 alias vp="vagrant provision"
 alias php56="php"
+function make:db {
+    mysql -u homestead -p -h 192.168.10.10 -e "create database $1;"
+}
 # ---------------------- #
 # testing
 # ---------------------- #
@@ -134,7 +186,7 @@ function brew {
 		echo "${ORANGE}Updating brew...${RESET}"
 		$var_brew update
 		echo "${ORANGE}Upgrading formulas...${RESET}"
-		$var_brew upgrade --all
+		$var_brew upgrade
 		echo "${ORANGE}Cleaning up...${RESET}"
 		$var_brew cleanup
 		echo "${ORANGE}The doctor says...${RESET}"
@@ -153,7 +205,7 @@ alias c="clear"
 alias o="open ."
 alias .="cd .."
 
-alias hosts="$EDITOR /etc/hosts"
+alias hosts="sudo nano /etc/hosts"
 
 alias dns-cache="dscacheutil -flushcache"
 alias clear-cache="dscacheutil -flushcache"
@@ -202,64 +254,15 @@ alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && k
 ############################
 # functions
 
-# Change working directory to the top-most Finder window location
-function cdf() { # short for `cdfinder`
-	cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')"
-}
-
 # reload file
 function reload {
 	if [[ $1 == "" ]] ; then
 		source ~/.bash_profile
 	elif [ -f ~/.${1#.} ]; then
 		source ~/.${1#.}
-	elif [ -f $dotFilePath.${1#.} ]; then
-		source $dotFilePath.$1
+	elif [ -f $setupDir/.${1#.} ]; then
+		source $setupDir/.$1
 	else
-		echo "File not found in: ~/.${1#.} and $dotFilePath.${1#.} not found."
+		echo "File not found in: ~/.${1#.} and $setupDir/.${1#.} not found."
 	fi
-}
-
-# find folder
-function f {
-  if [[ -d "$1" ]]; then
-    cd $1
-  elif [[ -d "../$1" ]]; then
-    cd ../$1
-  elif [[ -d "../../$1" ]]; then
-    cd ../../$1
-  elif [[ -d "../../../$1" ]]; then
-    cd ../../../$1
-  elif [[ -d "../../../../$1" ]]; then
-    cd ../../../../$1
-  elif [[ -d $(find . -name $1 -type d -maxdepth 1 -mindepth 1) ]]; then
-    cd $(find . -name $1 -type d -maxdepth 1 -mindepth 1)
-  elif [[ -d $(find . -name $1 -type d -maxdepth 2 -mindepth 2) ]]; then
-    cd $(find . -name $1 -type d -maxdepth 2 -mindepth 2)
-  elif [[ -d $(find . -name $1 -type d -maxdepth 3 -mindepth 3) ]]; then
-    cd $(find . -name $1 -type d -maxdepth 3 -mindepth 3)
-  elif [[ -d $(find . -name $1 -type d -maxdepth 4 -mindepth 4) ]]; then
-    cd $(find . -name $1 -type d -maxdepth 4 -mindepth 4)
-  fi
-}
-
-# Opens the github page for the current git repository in your browser
-# git@github.com:jasonneylon/dotfiles.git
-# https://github.com/jasonneylon/dotfiles/
-function gh() {
-  giturl=$(git config --get remote.origin.url)
-  if [ "$giturl" == "" ]
-    then
-     echo "Not a git repository or no remote.origin.url set"
-     exit 1;
-  fi
-
-  giturl=${giturl/git\@github\.com\:/https://github.com/}
-  giturl=${giturl/\.git/\/tree/}
-  echo $giturl
-  branch="$(git symbolic-ref HEAD 2>/dev/null)" ||
-  branch="(unnamed branch)"     # detached HEAD
-  branch=${branch##refs/heads/}
-  giturl=$giturl$branch
-  open $giturl
 }

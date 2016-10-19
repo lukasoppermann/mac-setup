@@ -15,7 +15,7 @@ function push {
   elif [[ ($1 == "tag" || $1 == "tags") && $2 == "-f" ]]; then
     git push -f --tags origin $(cur_git_branch)
 	elif [[ ! -z "$1" ]]; then
-    git push $1 $(cur_git_branch)
+    git push $1
   else
     git push origin $(cur_git_branch)
   fi
@@ -44,12 +44,19 @@ alias ck="git checkout"
 alias b="git branch"
 alias ba="git branch -a"
 alias cherry="git cherry-pick"
-alias dif=diff
-alias diff="git diff"
+function diff {
+	if [[ ! -z "$1" ]]; then
+		git diff --color $1 | diff-so-fancy
+	else
+		git diff --color | diff-so-fancy
+	fi
+}
+# alias diff="git diff --color | diff-so-fancy"
+
 alias remote="git remote add"
 alias fetch="git fetch"
 alias conflicts="git diff --name-only --diff-filter=U"
-alias fix="git diff --name-only | uniq | xargs mate"
+alias diff-fix="git diff --name-only | uniq | xargs $EDITOR"
 alias discard="git stash save --keep-index; git stash drop"
 alias tag="git tag"
 alias tags="git tag"
@@ -58,5 +65,5 @@ alias mtool="git mergetool"
 alias grm="git rm --cached -r"
 
 # alias log="git log \$(cur_git_branch) --decorate --graph --oneline --date-order"
-alias log="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %C(Normal)%s%Creset %C(white Dim)(%cr) %Creset' --abbrev-commit"
+alias log="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %C(Normal)%s%Creset %C(white)(%cr) %Creset' --abbrev-commit"
 alias hlog="git reflog"
