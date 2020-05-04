@@ -8,7 +8,7 @@ cur_git_branch() {
 }
 # push
 function push {
-  if [[ $1 == "tags" || $1 == "tag" ]]; then
+  if [[ $1 == "tags" || $1 == "tag"  || $1 == "--tags" ]]; then
     git push && git push --tags origin $(cur_git_branch)
   elif [[ ($1 == "-f" && ($2 == "tag" || $2 == "tags")) ]]; then
     git push -f --tags origin $(cur_git_branch)
@@ -18,6 +18,16 @@ function push {
     git push $1
   else
     git push origin $(cur_git_branch)
+  fi
+}
+
+# delete branch
+function : {
+	if [[ ! -z "$1" ]]; then
+    git push origin :$1
+    if [[ ($2 == "-b") ]]; then
+      git branch -D $1
+    fi
   fi
 }
 
