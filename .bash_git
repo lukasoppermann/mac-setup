@@ -77,3 +77,15 @@ alias grm="git rm --cached -r"
 # alias log="git log \$(cur_git_branch) --decorate --graph --oneline --date-order"
 alias log="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %C(Normal)%s%Creset %C(white)(%cr) %Creset' --abbrev-commit"
 alias hlog="git reflog"
+
+# Git branch bash completion
+# https://gist.github.com/JuggoPop/10706934
+if [ -f $setupDir/.git-completion.bash ]; then
+  source "$setupDir/.git-completion.bash"
+
+  # Add git completion to aliases
+  __git_complete ck _git_checkout
+  __git_complete pull _git_pull
+  __git_complete push _git_push
+  __git_complete b _git_branch
+fi
