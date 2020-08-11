@@ -70,114 +70,17 @@ alias gits="atom $setupDir/.bash_git"
 alias kdiff="git mergetool -y -t Kaleidoscope"
 
 # ---------------------- #
-# docker
-# ---------------------- #
-alias dr="docker"
-alias dc="docker-compose"
-alias dm="docker-machine"
-alias dckr="docker"
-function dockerip {
-    docker inspect --format='{{.Name}} - {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -aq)
-}
-
-# ---------------------- #
 # project directories
 # ---------------------- #
 alias veare="cd ~/code/veare"
-alias fs="cd ~/code/formandsystem"
-alias cms="cd ~/code/formandsystem-cms"
-alias fs-cms="cd ~/code/fs-cms"
-alias api="cd ~/code/formandsystem-api"
-alias mark="cd ~/code/mark"
-alias copra="cd ~/code/copra"
-alias bosch="cd ~/code/bosch-git"
 # ---------------------- #
 # general directories
 # ---------------------- #
 alias p="cd ~/code"
-alias co="cd ~/code"
 alias code="cd ~/code"
 alias pr="cd ~/Projects"
 alias setup=environment
 alias environment="cd ~/code/_environment"
-alias packages="cd ~/code/_packages"
-
-# ---------------------- #
-# dev & laravel
-# ---------------------- #
-alias bowerup="bower cache clean && bower update -f"
-alias php='php -dzend_extension=/usr/local/opt/php70-xdebug/xdebug.so'
-alias art="php artisan"
-alias seed="php artisan db:seed"
-alias reset="php artisan migrate:reset"
-alias cc="php artisan cache:clear"
-alias cl="> storage/logs/laravel.log"
-alias phpunit="php vendor/bin/phpunit -vvv --stderr --report-useless-tests --coverage-text --colors"
-alias unit="php vendor/bin/phpunit -v --stderr"
-alias phpspec="vendor/bin/phpspec"
-alias spec="vendor/bin/phpspec run -v"
-alias humbug="vendor/bin/humbug && vendor/bin/humbug stats --skip-killed=yes -vvv"
-alias dump="composer dump-autoload -o & art clear-compiled"
-alias slow="slow-deps"
-alias vm="ssh vagrant@127.0.0.1 -p 2222"
-alias h="homestead"
-alias homestead-edit="atom ~/.homestead/Homestead.yaml"
-alias v="vagrant"
-alias vst="vagrant global-status"
-alias vup="vagrant up"
-alias vre="vagrant reload"
-alias vp="vagrant provision"
-alias php56="php"
-function make:db {
-    mysql -u homestead -p -h 192.168.10.10 -e "create database $1;"
-}
-# ---------------------- #
-# testing
-# ---------------------- #
-alias psr="vendor/bin/php-cs-fixer fix -vvv --diff --dry-run;"
-
-# ---------------------- #
-# Run Build script
-# TODO: replace with gulp ?
-# ---------------------- #
-function build {
-  file="build.sh"
-	if [ -e "$file" ]; then
-		source $file
-	elif [ -e "public/$file" ]; then
-    source public/$file
-	elif [ -e "grunt-tasks/$file" ]; then
-    source grunt-tasks/$file
-  elif [ -e "public/grunt-tasks/$file" ]; then
-    source public/grunt-tasks/$file
-	elif [ -e "htdocs/$file" ]; then
-    source htdocs</$file
-	elif [ -e "grunt-tasks/$file" ]; then
-    source grunt-tasks/$file
-  elif [ -e "htdocs/grunt-tasks/$file" ]; then
-    source htdocs/grunt-tasks/$file
-  else
-    echo "build.sh not found"
-  fi
-}
-
-# composer update
-function composer {
-  var_composer="/usr/local/bin/composer"
-	if [[ $1 == "update" ]] ; then
-    if [[ ! -z $2 ]] ; then
-      echo "Updating package $2:"
-      $var_composer update $2
-    else
-		  echo "Self update:"
-		  $var_composer self-update
-		  echo "Updating packages:"
-		  $var_composer update
-    fi
-	else
-		$var_composer "$@"
-	fi
-}
 
 # brew update
 function brew {
@@ -202,7 +105,6 @@ function root {
 
 # shortcuts
 alias c="clear"
-alias o="open ."
 alias .="cd .."
 
 alias hosts="sudo nano /etc/hosts"

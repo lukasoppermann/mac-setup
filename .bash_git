@@ -50,6 +50,27 @@ function cm {
 	git commit -m "$msg"
 }
 
+function v {
+  ver=$1
+  if [[ ($1 != "patch" && $1 != "minor" && $1 != "major") ]]; then
+    read -e -p "Please specify a valid version type (patch, minor or major): " version
+    ver=$version
+  fi
+  msg=${*:2}
+	if [[ -z "$msg" ]]; then
+	read -e -p "Enter a commit message: " message
+		msg=$message
+	fi
+	npm version $ver -m "$msg"
+  #https://www.barrykooij.com/create-github-releases-via-command-line/
+  ## create github release
+  #$version=$(git describe --tags $(git rev-list --tags --max-count=1))
+  #API_JSON=$(printf '{"tag_name": "v%s","target_commitish": "master","name": "Release version v%s","body": "v%s","draft": false,"prerelease": false}' $version $version $message)
+  #curl --data "$API_JSON" https://api.github.com/repos/:owner/:repository/releases?access_token=:access_token
+}
+alias version="v"
+
+
 alias ck="git checkout"
 alias b="git branch"
 alias ba="git branch -a"
