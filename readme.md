@@ -35,3 +35,22 @@ source $setupDir/.setup_bash
 
 ## Adding more files
 The `.setup_bash` loads all files within the same directory that have a name starting with `.bash_` so you can easily add your own aliases and settings by creating new files like `.bash_node`.
+
+## Useful software
+- Adobe Suite
+- Sketch & Abstract
+- Figma
+- Spotify
+- Google Drive
+- Contrast (color contrast app)
+- Slack
+- Atom or VS Code
+- ToDoist
+- Franz & Slack
+- 1Password
+- Magnet
+- Google Drive
+
+### Code & Dev
+- Homebrew
+- iTerm 2
