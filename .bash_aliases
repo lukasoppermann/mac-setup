@@ -35,6 +35,14 @@ function root {
 	cd $(sed -E "s#($pwdDir$projectsDir/[^/]*)/.*#\1#" <<< $PWD)
 }
 
+function port {
+	if [[ $1 != "" ]] ; then
+		lsof -i :${1#.} | grep LISTEN
+	else
+		echo "Please provide a port"
+	fi 
+}
+
 # shortcuts
 alias c="clear"
 alias .="cd .."
