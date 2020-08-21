@@ -1,74 +1,10 @@
 # ---------------------- #
-# stuff
-# ---------------------- #
-BASE_DIR="/Users/lukasoppermann"
-POSTS_DIR="$BASE_DIR/Code/veare/storage/app/articles"
-function post {
-    name=$(echo $1 | tr '[:upper:]' '[:lower:]')
-    name=$(echo $name | xargs)
-    echo -e "# $1" >> $POSTS_DIR/$(date '+%y%m%d')-${name// /-}.md
-}
-function draft {
-    name=$(echo $1 | tr '[:upper:]' '[:lower:]')
-    name=$(echo $name | xargs | sed "s/[^[:alpha:] -]//g")
-    echo -e "# $1" >> $POSTS_DIR/-${name// /-}.md
-}
-function publish {
-
-    if [[ ! -z $1 ]]; then
-        files=($(find $POSTS_DIR -iname "[a-z-]*.md"))
-        post=$(echo ${files[$1]} | sed 's/.*\/-//')
-
-        if [ -e "$POSTS_DIR/-$post" ]; then
-            mv $POSTS_DIR/-$post $POSTS_DIR/$(date +%y%m%d)-$post
-            echo -e "Renamed \033[33m $post \033[0mto \033[33m$(date +%y%m%d)-$post\\n\033[0m"
-            return
-        fi
-
-        post=$(echo ${files[$1]} | sed 's/.*\///')
-        if [ -e "$POSTS_DIR/$post" ]; then
-            mv $POSTS_DIR/$post $POSTS_DIR/$(date +%y%m%d)-$post
-            echo -e "Renamed \033[33m $post \033[0mto \033[33m$(date +%y%m%d)-$post\\n\033[0m"
-            return
-        fi
-
-        echo -e "\033[33m\\nPost with id ${1} not found.\\n\033[0m"
-        return
-    fi
-    echo -e "\033[33m\\nPlease provide the id of the post you want to publish.\\n\033[0m"
-
-}
-function posts {
-    # check if user provided argument $1 && if this key exists
-    i=0;
-    for post in $(find $POSTS_DIR -iname "[a-z-]*.md"); do
-        if [[ ! -z $1 && $i = $1 ]]; then
-            atom $post
-            return
-        fi
-        posts[i++]="$post"
-    done;
-    echo -e "\033[33m\\nTip: Open a post using the command \"posts n\" where n is the index from the list.\\n\033[0m"
-
-
-    i=0;
-    for post in ${posts[@]}; do
-        p=$(echo $post | sed 's/.*\/-//' | sed 's/.*\///' | sed 's/\.md//' | sed 's/-/ /g')
-        echo -e "\033[33m${i} \033[0m${p}";
-        (( i++ ))
-    done;
-    echo -e ""
-    return;
-}
-
-# ---------------------- #
 # open bash files
 # ---------------------- #
 alias profile="atom ~/.bash_profile"
 alias aliases="atom $setupDir/.bash_aliases;"
 alias gits="atom $setupDir/.bash_git"
 alias kdiff="git mergetool -y -t Kaleidoscope"
-
 # ---------------------- #
 # project directories
 # ---------------------- #
@@ -77,10 +13,6 @@ alias veare="cd ~/code/veare"
 # general directories
 # ---------------------- #
 alias p="cd ~/code"
-alias code="cd ~/code"
-alias pr="cd ~/Projects"
-alias setup=environment
-alias environment="cd ~/code/_environment"
 
 # brew update
 function brew {
@@ -158,6 +90,9 @@ alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && k
 
 # reload file
 function reload {
+	# store current dir to cd back
+	cur_dir=$(echo $PWD)
+	# reload profile
 	if [[ $1 == "" ]] ; then
 		source ~/.bash_profile
 	elif [ -f ~/.${1#.} ]; then
@@ -167,4 +102,6 @@ function reload {
 	else
 		echo "File not found in: ~/.${1#.} and $setupDir/.${1#.} not found."
 	fi
+	# cd back to prev dir
+	cd ${cur_dir}
 }
