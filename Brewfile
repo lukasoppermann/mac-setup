@@ -6,6 +6,7 @@ brew "mkcert"
 brew "nss"
 brew "node"
 brew "git"
+brew "zsh"
 brew "diff-so-fancy"
 # software tools
 cask "1password"

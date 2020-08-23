@@ -15,11 +15,81 @@ cd ~/Code/mac-setup && brew bundle
 ### 3. Backup apps via homebrew
 To create a bundle file run `brew bundle dump`. However `casks` are not added. It is better to edit the [`Brewfile`](./Brewfile) by hand.
 
-## BASH Installation
+## Zsh
+### iTerm2
+In iTerm go to `Preferences > Profiles > General` and change the **Command** from `Login shell` to command: `/bin/zsh`
 
-**Double-click the `install.command`** and everything should work fine.
+#### Use colors
+Update submodules [iTerm2 Material Design](https://github.com/MartinSeeler/iterm2-material-design)
+```
+git submodule update --init --recursive
+```
 
-It does the following:
+1. In iTerm2 go to `iTerm2 > Preferences > Profiles > Colors Tab`
+2. Click Color Presets...
+3. Click Import...
+4. Select the material-design-colors.itermcolors file
+5. Select the material-design-colors from Load Presets...
+
+### Install prezto
+Remove the `.zshrc` file to avoide prezto from choking.
+```shell
+rm -f ~/.zshrc
+```
+
+Clone prezto (sadly there is no uncomplicated way to do this)
+```shell
+git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+```
+
+Run the following command to install all files for prezto & change the default shell to zsh
+```shell
+setopt EXTENDED_GLOB
+for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
+ ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+done
+chsh -s $(which zsh)
+```
+### Configure prezto
+  
+#### Change the theme to pure
+Find the theme section:
+```
+zstyle ':prezto:module:prompt' theme 'sorin'
+```
+and replace the theme with 'pure'
+```
+zstyle ':prezto:module:prompt' theme 'pure'
+```
+#### Add some modules
+Find the module section:
+```
+zstyle ':prezto:load' pmodule \
+```
+and add the following to the end of it
+- `node` - [npm auto-completion](https://github.com/sorin-ionescu/prezto/tree/master/modules/node)
+- `autosuggestions` – [autosuggestions]( https://github.com/sorin-ionescu/prezto/tree/master/modules/autosuggestions)
+You should end up with:
+```
+zstyle ':prezto:load' pmodule \
+  'environment' \
+  'terminal' \
+  'editor' \
+  'history' \
+  'directory' \
+  'spectrum' \
+  'utility' \
+  'completion' \
+  'node' \
+  'autosuggestions' \
+  'prompt'
+```
+
+<!-- ## BASH Installation -->
+
+<!-- **Double-click the `install.command`** and everything should work fine. -->
+
+<!-- It does the following:
 
 1. Add a `setupDir` variable to the `.bash_profile` which points to this folder on your hard drive, like this:
 
@@ -31,7 +101,7 @@ setupDir=$HOME/Code/.bash
 
 ```bash
 source $setupDir/.setup_bash
-```
+``` -->
 
 ## Adding more files
 The `.setup_bash` loads all files within the same directory that have a name starting with `.bash_` so you can easily add your own aliases and settings by creating new files like `.bash_node`.
