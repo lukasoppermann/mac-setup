@@ -53,6 +53,7 @@ alias add="git add"
 alias add.="git add ."
 alias pull="git pull"
 alias rebase="git rebase -i"
+alias rb="git rebase"
 alias rbc="git rebase --continue"
 alias abort="git rebase --abort"
 alias reset="git reset -p"
@@ -61,7 +62,8 @@ alias log="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset 
 function cm {
 	msg=${*:1}
 	if [[ -z "$msg" ]]; then
-	read -e -p "Enter a commit message: " message
+		echo -n "Enter a commit message:"
+		read message
 		msg=$message
 	fi
 	git commit -m "$msg"
@@ -130,6 +132,22 @@ function v {
   #curl --data "$API_JSON" https://api.github.com/repos/:owner/:repository/releases?access_token=:access_token
 }
 alias version="v"
+#######################
+#
+# NPM ################
+#
+function npm {
+	var_npm="/usr/local/bin/npm"
+	if [[ $1 == "update" ]] || [[ $1 == "up" ]] ; then
+		$var_npm update
+	elif [[ $1 == "outdated" ]] || [[ $1 == "out" ]] ; then
+		$var_npm outdated -l
+	elif [[ $1 == "" ]] ; then
+		$var_npm run && $var_npm
+	else
+		/usr/local/bin/npm "$@"
+	fi
+}
 #######################
 #
 # HOMEBREW ################
