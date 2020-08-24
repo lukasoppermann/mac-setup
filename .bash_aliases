@@ -68,7 +68,7 @@ alias l='ls'
 alias ls='ls -GAF ${colorflag}'
 
 # List all files colorized in long format, including dot files
-alias ll="ls -laF ${colorflag}"
+alias ll="ls -lAF ${colorflag}"
 
 # List only directories
 alias ld='ls -lF ${colorflag} | grep "^d"'

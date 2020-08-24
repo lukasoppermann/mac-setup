@@ -1,4 +1,7 @@
+#######################
+#
 # Utitlities ################
+#
 # show all processes running on port XYZ
 function port {
 	if [[ $1 != "" ]] ; then
@@ -7,11 +10,70 @@ function port {
 		echo "Please provide a port"
 	fi 
 }
+alias top="htop"
+# better ls -G -A=include hidden, but not . and ..; -F=/ after dir to mark it as such
+alias ls='ls -GAF ${colorflag}'
+# list all files in long format
+alias ll='ls -lAF ${colorflag}'
+# list directories only
+alias ld='ls -lF ${colorflag} | grep "^d"'
+# Enable aliases to be sudo’ed
+alias sudo='sudo '
+#######################
+#
 # GIT ################
+#
 alias st="git status"
-alias cm="git commit -m"
+alias b="git branch"
+alias ck="git checkout"
 alias add="git add"
 alias add.="git add ."
+alias pull="git pull"
+alias rebase="git rebase -i"
+alias continue="git rebase --continue"
+alias abort="git rebase --abort"
+alias reset="git reset -p"
+alias log="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %C(Normal)%s%Creset %C(white)(%cr) %Creset' --abbrev-commit"
+# git checkout -m with required message
+function cm {
+	msg=${*:1}
+	if [[ -z "$msg" ]]; then
+	read -e -p "Enter a commit message: " message
+		msg=$message
+	fi
+	git commit -m "$msg"
+}
+# git push with some additions
+function push {
+  if [[ $1 == "tags" || $1 == "tag"  || $1 == "--tags" ]]; then
+    git push && git push --tags origin $(cur_git_branch)
+  elif [[ ($1 == "-f" && ($2 == "tag" || $2 == "tags")) ]]; then
+    git push -f --tags origin $(cur_git_branch)
+  elif [[ ($1 == "tag" || $1 == "tags") && $2 == "-f" ]]; then
+    git push -f --tags origin $(cur_git_branch)
+	elif [[ ! -z "$1" ]]; then
+    git push $1
+  else
+    git push origin $(cur_git_branch)
+  fi
+}
+# delete branch
+function : {
+	if [[ ! -z "$1" ]]; then
+    git push origin :$1
+    if [[ ($2 == "-b") ]]; then
+      git branch -D $1
+    fi
+  fi
+}
+# replace diff with diff so fancy
+function diff {
+	if [[ ! -z "$1" ]]; then
+		git diff --color $1 | diff-so-fancy
+	else
+		git diff --color | diff-so-fancy
+	fi
+}
 # git clean -f && git checkout -- ${dir}
 function clean {
 	default_dir="public"
@@ -23,7 +85,12 @@ function clean {
 	git clean -f
 	git checkout -- ${clean_dir}
 }
+
+alias version="v"
+#######################
+#
 # HOMEBREW ################
+#
 # brew update
 function brew {
 	if [[ $1 == "update" ]] ; then
