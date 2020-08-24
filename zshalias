@@ -19,6 +19,14 @@ alias ll='ls -lAF ${colorflag}'
 alias ld='ls -lF ${colorflag} | grep "^d"'
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
+# open file or folder in vs code
+function vs {
+	if [[ $1 != "" ]] ; then
+		code ${1}
+	else
+		code .
+	fi 
+}
 #######################
 #
 # GIT ################
