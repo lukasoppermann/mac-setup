@@ -1,0 +1,42 @@
+# Utitlities ################
+# show all processes running on port XYZ
+function port {
+	if [[ $1 != "" ]] ; then
+		lsof -i :${1#.} | grep LISTEN
+	else
+		echo "Please provide a port"
+	fi 
+}
+# GIT ################
+alias st="git status"
+alias cm="git commit -m"
+alias add="git add"
+alias add.="git add ."
+# git clean -f && git checkout -- ${dir}
+function clean {
+	default_dir="public"
+	if [[ $1 == "" ]] ; then
+		clean_dir=${default_dir}
+	else
+		clean_dir=${1}
+	fi
+	git clean -f
+	git checkout -- ${clean_dir}
+}
+# HOMEBREW ################
+# brew update
+function brew {
+	if [[ $1 == "update" ]] ; then
+		var_brew="/usr/local/bin/brew"
+		echo "${ORANGE}Updating brew...${RESET}"
+		$var_brew update
+		echo "${ORANGE}Upgrading formulas...${RESET}"
+		$var_brew upgrade
+		echo "${ORANGE}Cleaning up...${RESET}"
+		$var_brew cleanup
+		echo "${ORANGE}The doctor says...${RESET}"
+		$var_brew doctor
+	else
+		/usr/local/bin/brew "$@"
+	fi
+}

@@ -85,6 +85,17 @@ zstyle ':prezto:load' pmodule \
   'prompt'
 ```
 
+### Install aliases
+source alias file in source `~/.zshrc`, add the follwing lines to `~/.zshrc` by running `code ~/.zshrc`
+
+```
+if [ -f ~/mac-setup/zshalias ]; then
+    source ~/mac-setup/zshalias
+else
+    print "404: ~/mac-setup/zshalias not found."
+fi
+```
+
 <!-- ## BASH Installation -->
 
 <!-- **Double-click the `install.command`** and everything should work fine. -->
