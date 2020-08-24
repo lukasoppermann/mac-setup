@@ -45,17 +45,22 @@ function cm {
 }
 # git push with some additions
 function push {
+	current_branch=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
   if [[ $1 == "tags" || $1 == "tag"  || $1 == "--tags" ]]; then
-    git push && git push --tags origin $(cur_git_branch)
+    git push && git push --tags origin $current_branch
   elif [[ ($1 == "-f" && ($2 == "tag" || $2 == "tags")) ]]; then
-    git push -f --tags origin $(cur_git_branch)
+    git push -f --tags origin $current_branch
   elif [[ ($1 == "tag" || $1 == "tags") && $2 == "-f" ]]; then
-    git push -f --tags origin $(cur_git_branch)
+    git push -f --tags origin $current_branch
 	elif [[ ! -z "$1" ]]; then
     git push $1
   else
-    git push origin $(cur_git_branch)
+    git push origin $current_branch
   fi
+}
+# get current git branch
+cur_git_branch() {
+	git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
 }
 # delete branch
 function : {
@@ -85,8 +90,6 @@ function clean {
 	git clean -f
 	git checkout -- ${clean_dir}
 }
-
-alias version="v"
 #######################
 #
 # HOMEBREW ################
