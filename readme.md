@@ -89,16 +89,20 @@ zstyle ':prezto:load' pmodule \
 Source alias file in source `~/.zshrc`, add the follwing lines to `~/.zshrc` by running `code ~/.zshrc`
 
 ```
-if [ -f ~/mac-setup/zshalias ]; then
-    source ~/mac-setup/zshalias
+## loads zshalias file to add new functions and aliases
+# update path_zshalias to point to the zshalias in this folder
+path_zshalias="~/Code/mac-setup/zshalias"
+if [ -f $path_zshalias ]; then
+    source $path_zshalias
 else
-    print "404: ~/mac-setup/zshalias not found."
+    echo -e "\e[31;1m404: ${path_zshalias} not found.\e[0m"
 fi
 ```
 
 ### Disable zsh autocorrect prompt
 Add the follwing lines to `~/.zshrc` to disable zsh from prompting auto corrections.
 ```
+# disable autocorrect in zsh
 unsetopt correct_all
 unsetopt correct
 ```
