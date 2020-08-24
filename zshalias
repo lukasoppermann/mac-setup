@@ -58,10 +58,6 @@ function push {
     git push origin $current_branch
   fi
 }
-# get current git branch
-cur_git_branch() {
-	git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
-}
 # delete branch
 function : {
 	if [[ ! -z "$1" ]]; then
