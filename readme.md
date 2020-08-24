@@ -86,7 +86,7 @@ zstyle ':prezto:load' pmodule \
 ```
 
 ### Install aliases
-source alias file in source `~/.zshrc`, add the follwing lines to `~/.zshrc` by running `code ~/.zshrc`
+Source alias file in source `~/.zshrc`, add the follwing lines to `~/.zshrc` by running `code ~/.zshrc`
 
 ```
 if [ -f ~/mac-setup/zshalias ]; then
@@ -96,6 +96,12 @@ else
 fi
 ```
 
+### Disable zsh autocorrect prompt
+Add the follwing lines to `~/.zshrc` to disable zsh from prompting auto corrections.
+```
+unsetopt correct_all
+unsetopt correct
+```
 <!-- ## BASH Installation -->
 
 <!-- **Double-click the `install.command`** and everything should work fine. -->
