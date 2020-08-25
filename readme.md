@@ -106,6 +106,22 @@ Add the follwing lines to `~/.zshrc` to disable zsh from prompting auto correcti
 unsetopt correct_all
 unsetopt correct
 ```
+
+### Add git auto-completion
+To e.g. have branch autocompletion first download the git-completion files via `curl`.
+
+You need the original bash file in `~/.git-completion.bash` and the zsh file in `~/.zsh/git-completion.zsh`.
+
+```
+curl -o ~/.zsh/git-completion.zsh https://github.com/git/git/blob/master/contrib/completion/git-completion.zsh && \
+curl -o ~/.git-completion.bash https://github.com/git/git/blob/master/contrib/completion/git-completion.bash
+```
+
+Add the follwing lines to the end of `~/.zshrc`
+```
+# add files in ~/.zsh to path
+fpath=(~/.zsh $fpath)
+```
 <!-- ## BASH Installation -->
 
 <!-- **Double-click the `install.command`** and everything should work fine. -->
