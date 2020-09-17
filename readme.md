@@ -16,6 +16,33 @@ cd ~/Code/mac-setup && brew bundle
 To create a bundle file run `brew bundle dump`. However `casks` are not added. It is better to edit the [`Brewfile`](./Brewfile) by hand.
 
 ## Zsh
+### Use homebrew zsh
+
+Add the homebrew zsh `/usr/local/bin/zsh` to `/etc/shells`
+
+```
+# edit /etc/shells
+sudo nano /etc/shells
+# add /usr/local/bin/zsh at the end of the file
+```
+
+Verify it by running `cat /etc/shells`
+```
+cat /etc/shells
+/bin/bash
+/bin/csh
+/bin/sh
+/bin/tcsh
+/bin/zsh
+/usr/local/bin/zsh
+```
+
+To change the shell assinged to your user account, run the following command.
+```
+# change the default shell
+chsh -s /usr/local/bin/zsh
+```
+
 ### iTerm2
 In iTerm go to `Preferences > Profiles > General` and change the **Command** from `Login shell` to command: `/bin/zsh`
 
@@ -42,7 +69,8 @@ Clone prezto (sadly there is no uncomplicated way to do this)
 git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 ```
 
-Run the following command to install all files for prezto & change the default shell to zsh
+#### RUN THE COMMAND
+RUN the following command to install all files for prezto & change the default shell to zsh
 ```shell
 setopt EXTENDED_GLOB
 for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
@@ -51,7 +79,8 @@ done
 chsh -s $(which zsh)
 ```
 ### Configure prezto
-  
+You can change the configuration in the `~/.zpreztorc` file.
+
 #### Change the theme to pure
 Find the theme section:
 ```
@@ -91,7 +120,7 @@ Source alias file in source `~/.zshrc`, add the follwing lines to `~/.zshrc` by 
 ```
 ## loads zshalias file to add new functions and aliases
 # update path_zshalias to point to the zshalias in this folder
-path_zshalias="~/Code/mac-setup/zshalias"
+path_zshalias="${ZDOTDIR:-$HOME}/Repos/mac-setup/zshalias"
 if [ -f $path_zshalias ]; then
     source $path_zshalias
 else
@@ -100,7 +129,7 @@ fi
 ```
 
 ### Disable zsh autocorrect prompt
-Add the follwing lines to `~/.zshrc` to disable zsh from prompting auto corrections.
+Add the following lines to `~/.zshrc` to disable zsh from prompting auto corrections.
 ```
 # disable autocorrect in zsh
 unsetopt correct_all
@@ -122,27 +151,14 @@ Add the follwing lines to the end of `~/.zshrc`
 # add files in ~/.zsh to path
 fpath=(~/.zsh $fpath)
 ```
-<!-- ## BASH Installation -->
 
-<!-- **Double-click the `install.command`** and everything should work fine. -->
+### Show zsh & version 
+Add the following line to the `~/.zshrc` file
 
-<!-- It does the following:
-
-1. Add a `setupDir` variable to the `.bash_profile` which points to this folder on your hard drive, like this:
-
-```bash
-setupDir=$HOME/Code/.bash
+```
+echo Current zsh: $(which zsh) / $(zsh --version)
 ```
 
-2. `sources` (loads) the `.setup_bash` file from this folder.
-
-```bash
-source $setupDir/.setup_bash
-```
-
-## Adding more files
-The `.setup_bash` loads all files within the same directory that have a name starting with `.bash_` so you can easily add your own aliases and settings by creating new files like `.bash_node`.
- -->
 ## Activate additional fonts
 Mac OS Catalina comes with some high quality fonts that are not activated by default, an exhaustive list can be found on [support.apple.com](https://support.apple.com/en-us/HT210192). 
 
