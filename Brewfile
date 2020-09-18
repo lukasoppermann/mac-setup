@@ -7,6 +7,7 @@ brew "nss"
 brew "node"
 brew "git"
 brew "zsh"
+brew "gh"
 brew "diff-so-fancy"
 # software tools
 cask "1password"
