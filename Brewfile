@@ -22,6 +22,7 @@ cask "google-backup-and-sync"
 cask "google-chrome"
 cask "firefox"
 cask "zoom"
+cask "alfred"
 # other tools & plugins
 cask "qlcolorcode"
 cask "qlstephen"
