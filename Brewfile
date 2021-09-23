@@ -1,9 +1,9 @@
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/core"
-brew "htop"
-brew "mkcert"
-brew "nss"
+# brew "htop"
+# brew "mkcert"
+# brew "nss"
 brew "node"
 brew "git"
 brew "zsh"
@@ -11,19 +11,35 @@ brew "gh"
 brew "diff-so-fancy"
 # software tools
 cask "1password"
-cask "signal"
-cask "franz"
-cask "slack"
-cask "visual-studio-code"
-cask "iterm2"
-cask "figma"
+cask "notion"
 cask "spotify"
 cask "google-backup-and-sync"
+cask "alfred"
+# communication
+cask "zoom"
+cask "signal"
+cask "franz"
+# cask "slack"
+# browsers
 cask "google-chrome"
 cask "firefox"
-cask "zoom"
-cask "alfred"
-# other tools & plugins
+# code
+cask "visual-studio-code"
+cask "iterm2"
+# design tools
+cask "figma"
+cask "sketch"
+cask "abstract" # sketch versioning
+# cask "zeplin"
+cask "affinity-publisher"
+cask "affinity-photo"
+cask "affinity-designer"
+# tools
+cask "macmediakeyforwarder" # allows spotify to react to play and pause buttons
+cask "lulu" # similiar to little snitch
+cask "ukelele" # create custom keyboard layouts
+cask "obs" # to connect EOS camera to webex
+# plugins
 cask "qlcolorcode"
 cask "qlstephen"
 cask "qlmarkdown"
