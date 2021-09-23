@@ -27,6 +27,7 @@ cask "firefox"
 cask "visual-studio-code"
 cask "iterm2"
 # design tools
+cask "sim-daltonism" # color blind ness simulator
 cask "figma"
 cask "sketch"
 cask "abstract" # sketch versioning
