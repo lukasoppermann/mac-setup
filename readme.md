@@ -188,9 +188,9 @@ Great font families are:
 | Design | Code | Productivity |
 | --- | --- | --- |
 | Adobe Suite | Homebrew | Google Drive |
-| Sketch & Abstract | iTerm 2 | ToDoist |
+| Sketch & Abstract | iTerm 2 | Notion |
 | Figma | Atom or VS Code | Spotify |
 | Contrast (color contrast app) | | Slack |
-| | | Franz & Signal |
+| Sim Daltonism | | Franz & Signal |
 | | | 1Password |
 | | | Magnet |
