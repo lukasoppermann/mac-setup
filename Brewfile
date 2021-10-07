@@ -44,7 +44,8 @@ cask "obs" # to connect EOS camera to webex
 # plugins
 cask "qlcolorcode"
 cask "qlstephen"
-cask "qlmarkdown"
+# cask "qlmarkdown"
+cask "sbarex-qlmarkdown"
 cask "quicklook-json"
 cask "qlprettypatch"
 cask "quicklook-csv"
