@@ -99,26 +99,18 @@ zstyle ':prezto:load' pmodule \
   'prompt'
 ```
 
-### Install aliases
+### Install config & aliases
 Source alias file in source `~/.zshrc`, add the follwing lines to `~/.zshrc` by running `code ~/.zshrc`
 
 ```
 ## loads zshalias file to add new functions and aliases
-# update path_zshalias to point to the zshalias in this folder
-path_zshalias="${ZDOTDIR:-$HOME}/Repos/mac-setup/zshalias"
-if [ -f $path_zshalias ]; then
-    source $path_zshalias
+# update path_zshconfig to point to the zshalias in this folder
+path_zshconfig="${ZDOTDIR:-$HOME}/Repos/mac-setup/zsh/zshconfig"
+if [ -f $path_zshconfig ]; then
+    source $path_zshconfig
 else
-    echo -e "\e[31;1m404: ${path_zshalias} not found.\e[0m"
+    echo -e "\e[31;1m404: ${path_zshconfig} not found.\e[0m"
 fi
-```
-
-### Disable zsh autocorrect prompt
-Add the following lines to `~/.zshrc` to disable zsh from prompting auto corrections.
-```
-# disable autocorrect in zsh
-unsetopt correct_all
-unsetopt correct
 ```
 
 ### Add git auto-completion
@@ -127,6 +119,7 @@ To e.g. have branch autocompletion first download the git-completion files via `
 You need the original bash file in `~/.git-completion.bash` and the zsh file in `~/.zsh/git-completion.zsh`.
 
 ```
+mkdir ~/.zsh && \
 curl -o ~/.zsh/git-completion.zsh https://github.com/git/git/blob/master/contrib/completion/git-completion.zsh && \
 curl -o ~/.git-completion.bash https://github.com/git/git/blob/master/contrib/completion/git-completion.bash
 ```
@@ -135,13 +128,6 @@ Add the follwing lines to the end of `~/.zshrc`
 ```
 # add files in ~/.zsh to path
 fpath=(~/.zsh $fpath)
-```
-
-### Show zsh & version 
-Add the following line to the `~/.zshrc` file
-
-```
-echo Current zsh: $(which zsh) / $(zsh --version)
 ```
 
 ## Activate additional fonts

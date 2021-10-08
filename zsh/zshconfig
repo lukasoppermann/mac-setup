@@ -1,0 +1,17 @@
+# load zsh aliases
+path_zshalias="${ZDOTDIR:-$HOME}/Repos/mac-setup/zsh/zshalias"
+if [ -f $path_zshalias ]; then
+    source $path_zshalias
+else
+    echo -e "\e[31;1m404: ${path_zshalias} not found.\e[0m"
+fi
+
+# disable autocorrect in zsh
+unsetopt correct_all
+unsetopt correct
+
+# Add git auto-completion (git-completion files need to be downloaded)
+fpath=(~/.zsh $fpath)
+
+### Show zsh & version 
+echo Current zsh: $(which zsh) / $(zsh --version)
