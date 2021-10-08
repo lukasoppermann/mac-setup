@@ -43,21 +43,6 @@ To change the shell assinged to your user account, run the following command.
 chsh -s /usr/local/bin/zsh
 ```
 
-### iTerm2
-In iTerm go to `Preferences > Profiles > General` and change the **Command** from `Login shell` to command: `/bin/zsh`
-
-#### Use colors
-Update submodules [iTerm2 Material Design](https://github.com/MartinSeeler/iterm2-material-design)
-```
-git submodule update --init --recursive
-```
-
-1. In iTerm2 go to `iTerm2 > Preferences > Profiles > Colors Tab`
-2. Click Color Presets...
-3. Click Import...
-4. Select the material-design-colors.itermcolors file
-5. Select the material-design-colors from Load Presets...
-
 ### Install prezto
 Remove the `.zshrc` file to avoide prezto from choking.
 ```shell

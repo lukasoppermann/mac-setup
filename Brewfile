@@ -7,16 +7,15 @@ tap "homebrew/core"
 brew "node"
 brew "git"
 brew "zsh"
-brew "gh"
 brew "diff-so-fancy"
 # software tools
 cask "1password"
 cask "notion"
 cask "spotify"
-cask "google-backup-and-sync"
+cask "google-drive"
 cask "alfred"
 # communication
-cask "zoom"
+#cask "zoom"
 cask "signal"
 cask "franz"
 # cask "slack"
@@ -25,12 +24,12 @@ cask "google-chrome"
 cask "firefox"
 # code
 cask "visual-studio-code"
-cask "iterm2"
+# cask "iterm2"
 # design tools
 cask "sim-daltonism" # color blind ness simulator
 cask "figma"
-cask "sketch"
-cask "abstract" # sketch versioning
+# cask "sketch"
+# cask "abstract" # sketch versioning
 # cask "zeplin"
 cask "affinity-publisher"
 cask "affinity-photo"
@@ -39,16 +38,16 @@ cask "affinity-designer"
 # cask "macmediakeyforwarder" # allows spotify to react to play and pause buttons (deprecated)
 cask "beardedspice" # allows spotify to react to play and pause buttons
 cask "lulu" # similiar to little snitch
-cask "ukelele" # create custom keyboard layouts
-cask "obs" # to connect EOS camera to webex
-# plugins
-cask "qlcolorcode"
-cask "qlstephen"
+# cask "ukelele" # create custom keyboard layouts
+# cask "obs" # to connect EOS camera to webex
+# Quicklook plugins
+cask "qlcolorcode" # quicklook syntax highlight
+cask "qlstephen" # quicklook view text files without extensions
 # cask "qlmarkdown"
 cask "sbarex-qlmarkdown"
 cask "quicklook-json"
-cask "qlprettypatch"
+# cask "qlprettypatch"
 cask "quicklook-csv"
 cask "betterzip"
 cask "webpquicklook"
-cask "suspicious-package"
+# cask "suspicious-package" # show appe package content in quicklook
