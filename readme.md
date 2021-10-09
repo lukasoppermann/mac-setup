@@ -6,24 +6,22 @@
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 ```
 ### 2. Install apps via homebrew
-`cd` into this directory on your mac where the `Brewfile` is located. Now run `brew bundle` to install all fils
+Run `brew bundle` from within this directory to install all apps form the [`Brewfile`](./Brewfile).
 
 ```sh
-cd ~/Code/mac-setup && brew bundle
+brew bundle
 ```
 
 ### 3. Backup apps via homebrew
 To create a bundle file run `brew bundle dump`. However `casks` are not added. It is better to edit the [`Brewfile`](./Brewfile) by hand.
 
-## Zsh
-### Install prezto
-Cd into this directory and run the prezto installer via the cli:
+## Zsh (prezto)
+Run the [prezto](https://github.com/sorin-ionescu/prezto) installer from within this directory.
 
 ```shell
-cd ~/Repos/mac-setup/ && zsh install_prezto.sh
+zsh install_prezto.sh
 ```
-
-Update the `path_zshconfig` in the `~/.zshrc` if needed.
+If needed, update the `path_zshconfig_folder` in the `~/.zshrc` afterwards. It must point to the `zsh` folder in this directory.
 
 ## Activate additional fonts
 Mac OS Catalina comes with some high quality fonts that are not activated by default, an exhaustive list can be found on [support.apple.com](https://support.apple.com/en-us/HT210192). 
