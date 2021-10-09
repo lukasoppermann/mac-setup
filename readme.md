@@ -16,103 +16,14 @@ cd ~/Code/mac-setup && brew bundle
 To create a bundle file run `brew bundle dump`. However `casks` are not added. It is better to edit the [`Brewfile`](./Brewfile) by hand.
 
 ## Zsh
-### Use homebrew zsh
-
-Add the homebrew zsh `/usr/local/bin/zsh` to `/etc/shells`
-
-```
-# edit /etc/shells
-sudo nano /etc/shells
-# add /usr/local/bin/zsh at the end of the file
-```
-
-Verify it by running `cat /etc/shells`
-```
-cat /etc/shells
-/bin/bash
-/bin/csh
-/bin/sh
-/bin/tcsh
-/bin/zsh
-/usr/local/bin/zsh
-```
-
-To change the shell assinged to your user account, run the following command.
-```
-# change the default shell
-chsh -s /usr/local/bin/zsh
-```
-
 ### Install prezto
-Remove the `.zshrc` file to avoide prezto from choking.
+Cd into this directory and run the prezto installer via the cli:
+
 ```shell
-rm -f ~/.zshrc
+cd ~/Repos/mac-setup/ && zsh install_prezto.sh
 ```
 
-Clone prezto (sadly there is no uncomplicated way to do this)
-```shell
-git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
-```
-
-#### RUN THE COMMAND
-RUN the following command to install all files for prezto & change the default shell to zsh
-```shell
-setopt EXTENDED_GLOB
-for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
- ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
-done
-chsh -s $(which zsh)
-```
-### Configure prezto
-You can change the configuration in the `~/.zpreztorc` file.
-
-#### Change the theme to pure
-Find the theme section:
-```
-zstyle ':prezto:module:prompt' theme 'sorin'
-```
-and replace the theme with 'pure'
-```
-zstyle ':prezto:module:prompt' theme 'pure'
-```
-#### Add some modules
-Find the module section:
-```
-zstyle ':prezto:load' pmodule \
-```
-and add the following to the end of it
-- `node` - [npm auto-completion](https://github.com/sorin-ionescu/prezto/tree/master/modules/node)
-- `autosuggestions` – [autosuggestions]( https://github.com/sorin-ionescu/prezto/tree/master/modules/autosuggestions)
-You should end up with:
-```
-zstyle ':prezto:load' pmodule \
-  'environment' \
-  'terminal' \
-  'editor' \
-  'history' \
-  'directory' \
-  'spectrum' \
-  'utility' \
-  'completion' \
-  'node' \
-  'autosuggestions' \
-  'syntax-highlighting' \
-  'prompt'
-```
-
-### Install config & aliases
-Source alias file in source `~/.zshrc`, add the follwing lines to `~/.zshrc` by running `code ~/.zshrc`
-
-```
-## loads zshconfig file to add new functions and aliases
-# update path_zshconfig to point to the zshconfig in this folder
-path_zshconfig="${ZDOTDIR:-$HOME}/Repos/mac-setup/zsh/zshconfig"
-if [ -f $path_zshconfig ]; then
-    source $path_zshconfig
-else
-    echo -e "\e[31;1m404: ${path_zshconfig} not found.\e[0m"
-fi
-```
+Update the `path_zshconfig` in the `~/.zshrc` if needed.
 
 ## Activate additional fonts
 Mac OS Catalina comes with some high quality fonts that are not activated by default, an exhaustive list can be found on [support.apple.com](https://support.apple.com/en-us/HT210192). 

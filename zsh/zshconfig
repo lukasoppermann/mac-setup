@@ -1,11 +1,9 @@
-# define config path
-path_zshconfigfolder="${ZDOTDIR:-$HOME}/Repos/mac-setup/zsh"
 # # init prezto
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 # # load zsh aliases
-path_zshalias="${path_zshconfigfolder}/zshalias"
+path_zshalias="${path_zshconfig_folder}/zshalias"
 if [ -f $path_zshalias ]; then
     source $path_zshalias
 else
@@ -20,8 +18,8 @@ unsetopt correct
 setopt AUTO_CD
 
 # Add git auto-completion (git-completion files need to be downloaded)
-zstyle ':completion:*:*:git:*' script $path_zshconfigfolder/.git-completion.bash
-fpath=($path_zshconfigfolder $fpath)
+zstyle ':completion:*:*:git:*' script $path_zshconfig_folder/.git-completion.bash
+fpath=($path_zshconfig_folder $fpath)
 
 
 ### Show zsh & version 

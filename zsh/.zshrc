@@ -1,5 +1,6 @@
+path_zshconfig_folder="${ZDOTDIR:-$HOME}/Repos/mac-setup/zsh"
 # load zsh config
-path_zshconfig="${ZDOTDIR:-$HOME}/Repos/mac-setup/zsh/zshconfig"
+path_zshconfig="${path_zshconfig_folder}/zshconfig"
 if [ -f $path_zshconfig ]; then
     source $path_zshconfig
 else
