@@ -1,0 +1,26 @@
+# # init prezto
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+# # load zsh aliases
+path_zshalias="${path_zshconfig_folder}/zshalias"
+if [ -f $path_zshalias ]; then
+    source $path_zshalias
+else
+    echo -e "\e[31;1m404: ${path_zshalias} not found.\e[0m"
+fi
+
+# # disable autocorrect in zsh
+unsetopt correct_all
+unsetopt correct
+
+# why would you type 'cd dir' if you could just type 'dir'?
+setopt AUTO_CD
+
+# Add git auto-completion (git-completion files need to be downloaded)
+zstyle ':completion:*:*:git:*' script $path_zshconfig_folder/.git-completion.bash
+fpath=($path_zshconfig_folder $fpath)
+
+
+### Show zsh & version 
+echo Current zsh: $(which zsh) / $(zsh --version)
