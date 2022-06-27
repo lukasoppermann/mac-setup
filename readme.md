@@ -49,12 +49,8 @@ Great font families are:
 - Quotes Caps and Quotes Script by Sudtipos
 
 ## Useful software
-| Design | Code | Productivity |
-| --- | --- | --- |
-| Adobe Suite | Homebrew | Google Drive |
-| Sketch & Abstract | iTerm 2 | Notion |
-| Figma | Atom or VS Code | Spotify |
-| Contrast (color contrast app) | | Slack |
-| Sim Daltonism | | Franz & Signal |
-| | | 1Password |
-| | | Magnet |
+| Topic | Software |
+| --- | --- |
+| Design | Adobe Suite, Figma, Contrast or Contraste, Sim Daltonism | 
+| Code | Homebrew, VS Code |
+| Productivity | Google Drive, Notion, Spotify, 1Password, Magnet, Raycast |

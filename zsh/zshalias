@@ -18,7 +18,7 @@ alias ll='ls -lAF ${colorflag}'
 # list directories only
 alias ld='ls -lF ${colorflag} | grep "^d"'
 # Enable aliases to be sudo’ed
-alias sudo='sudo '
+# alias sudo='sudo '
 # open file or folder in vs code
 # better cd that moves to paretn dir of file
 # smart cd function, allows switching to /etc when running 'cd /etc/fstab'
