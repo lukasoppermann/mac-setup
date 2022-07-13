@@ -1,5 +1,10 @@
 # The perfect setup
 
+## Git
+### Avoid having to force push for not setup branches
+```sh
+git config --global --add --bool push.autoSetupRemote true
+```
 ## Homebrew & apps
 ### 1. Install Homebrew
 ```sh
@@ -52,5 +57,5 @@ Great font families are:
 | Topic | Software |
 | --- | --- |
 | Design | Adobe Suite, Figma, Contrast or Contraste, Sim Daltonism | 
-| Code | Homebrew, VS Code |
+| Code | Fig, Homebrew, VS Code |
 | Productivity | Google Drive, Notion, Spotify, 1Password, Magnet, Raycast |
