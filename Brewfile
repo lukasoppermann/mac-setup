@@ -4,13 +4,13 @@ tap "homebrew/core"
 # brew "htop"
 # brew "mkcert"
 # brew "nss"
-brew "fig"
 brew "node"
 brew "git"
 brew "zsh"
 brew "diff-so-fancy"
 # software tools
 cask "1password"
+cask "1password/tap/1password-cli"
 cask "notion"
 cask "spotify"
 cask "google-drive"
@@ -27,6 +27,7 @@ cask "google-chrome"
 cask "firefox"
 # code
 cask "visual-studio-code"
+cask "fig"
 # cask "iterm2"
 # design tools
 cask "sim-daltonism" # color blindness simulator
@@ -48,7 +49,7 @@ cask "lulu" # similiar to little snitch
 cask "qlcolorcode" # quicklook syntax highlight
 cask "qlstephen" # quicklook view text files without extensions
 # cask "qlmarkdown"
-cask "sbarex-qlmarkdown"
+cask "qlmarkdown"
 cask "quicklook-json"
 # cask "qlprettypatch"
 cask "quicklook-csv"
