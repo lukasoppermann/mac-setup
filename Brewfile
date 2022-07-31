@@ -22,6 +22,7 @@ cask "signal"
 cask "obs"
 # cask "franz"
 cask "slack"
+cask "clipgrab"
 # browsers
 cask "google-chrome"
 cask "firefox"
