@@ -29,7 +29,7 @@ cask "firefox"
 # code
 cask "visual-studio-code"
 cask "fig"
-# cask "iterm2"
+cask "iterm2"
 # design tools
 cask "sim-daltonism" # color blindness simulator
 # cask "contraste" # color contrast checker
