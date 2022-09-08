@@ -1,5 +1,12 @@
 # The perfect setup
 
+## VS Code Font: [Fira Code](https://github.com/tonsky/FiraCode)
+1. Download and install variable font version: https://github.com/tonsky/FiraCode/releases/tag/6.2
+2. In VS Code `cmd + ,` to open settings
+3. Search for `Font Family` and add 'Fira Code' in the **Editor: Font Family** filed
+4. Search for `Ligatures` and open the settings.json
+5. Make sure it says `"editor.fontLigatures": true`
+6. Restart VS Code and enjoy
 ## Git
 ### Avoid having to force push for not setup branches
 ```sh
