@@ -35,6 +35,30 @@ zsh install_prezto.sh
 ```
 If needed, update the `path_zshconfig_folder` in the `~/.zshrc` afterwards. It must point to the `zsh` folder in this directory.
 
+## Keyboard remapping
+**Create file**
+```sh
+mkdir ~/Library/KeyBindings && cd ~/Library/KeyBindings && touch DefaultKeyBinding.dict
+```
+
+**Edit file**
+```sh
+cd ~/Library/KeyBindings && code DefaultKeyBinding.dict
+```
+
+**Paste into the file**
+```sh
+{
+  /* Ctrl + numpad . => , */
+  "~#." = ("insertText:", ",");
+}
+```
+
+Restart app to activate commands
+
+More info:
+- https://gist.github.com/trusktr/1e5e516df4e8032cbc3d
+- https://blog.victormendonca.com/2020/04/27/how-to-change-macos-key-bindings/
 ## Activate additional fonts
 Mac OS Catalina comes with some high quality fonts that are not activated by default, an exhaustive list can be found on [support.apple.com](https://support.apple.com/en-us/HT210192). 
 
