@@ -17,9 +17,24 @@ alias ls='ls -GAF ${colorflag}'
 alias ll='ls -lAF ${colorflag}'
 # list directories only
 alias ld='ls -lF ${colorflag} | grep "^d"'
-# Enable aliases to be sudo’ed
-# alias sudo='sudo '
-# open file or folder in vs code
+#######################
+#
+# Navigate ################
+#
+# repos / dir
+alias repos="cd ~/repos"
+alias repo="cd ~/repos"
+alias github="cd ~/GitHub"
+# open in vscode
+alias vs="code -r ."
+# better open
+function open () {
+  if [ -z "$1" ]; then
+    command code -r .
+  else
+    /usr/bin/open $1
+  fi
+}
 # better cd that moves to paretn dir of file
 # smart cd function, allows switching to /etc when running 'cd /etc/fstab'
 # also ls directory content when cd or when cd failed
@@ -35,6 +50,7 @@ function cd () {
 		builtin cd "$@" && ls -a
 	fi
 }
+
 #######################
 #
 # GIT ################
@@ -51,7 +67,20 @@ alias rb="git rebase"
 alias rbc="git rebase --continue"
 alias abort="git rebase --abort"
 alias reset="git reset -p"
+alias clone="git clone"
 alias log="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %C(Normal)%s%Creset %C(white)(%cr) %Creset' --abbrev-commit"
+rbi() {
+  git rebase -i HEAD~$1
+}
+cmn() {
+  msg=${*:1}
+	if [[ -z "$msg" ]]; then
+		echo -n "Enter a commit message:"
+		read message
+		msg=$message
+	fi
+	git commit -nm "$msg"
+}
 # git checkout -m with required message
 function cm {
 	msg=${*:1}
@@ -120,4 +149,11 @@ function npm {
 	else
 		/usr/local/bin/npm "$@"
 	fi
+}
+#######################
+#
+# Real diff ################
+#
+dif () {
+ /usr/bin/diff -u "$1" "$2" --ignore-blank-lines --ignore-space-change | diff-so-fancy
 }
