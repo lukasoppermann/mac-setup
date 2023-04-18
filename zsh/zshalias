@@ -17,6 +17,8 @@ alias ls='ls -GAF ${colorflag}'
 alias ll='ls -lAF ${colorflag}'
 # list directories only
 alias ld='ls -lF ${colorflag} | grep "^d"'
+# source zshrc
+alias reload="source ~/.zshrc"
 #######################
 #
 # Navigate ################
@@ -69,6 +71,8 @@ alias abort="git rebase --abort"
 alias reset="git reset -p"
 alias clone="git clone"
 alias log="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %C(Normal)%s%Creset %C(white)(%cr) %Creset' --abbrev-commit"
+alias stash="git stash"
+alias unstash="git stash pop"
 rbi() {
   git rebase -i HEAD~$1
 }
@@ -163,6 +167,15 @@ function npm {
 	fi
 }
 #######################
+#
+# Remove current branch ################
+rmb () {
+  branch_to_delete=$(git rev-parse --abbrev-ref HEAD)
+  main_branch=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
+  git checkout $main_branch
+  git branch -D $branch_to_delete
+}
+########################
 #
 # Real diff ################
 #
