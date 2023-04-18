@@ -106,6 +106,7 @@ function push {
     git push origin $current_branch
   fi
 }
+alias pfn="git push origin $(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/') --force --no-verify"
 # delete branch
 function : {
 	if [[ ! -z "$1" ]]; then
@@ -123,6 +124,17 @@ function diff {
 		git diff --color | diff-so-fancy
 	fi
 }
+# replace diff with diff so fancy
+function file-diff {
+	if [[ ! -z "$1" ]]; then
+		git diff --color --name-only "$@" | diff-so-fancy 
+	else
+		git diff --color --name-only | diff-so-fancy
+	fi
+}
+alias fdiff="file-diff"
+alias filediff="file-diff"
+alias fileDiff="file-diff"
 # git clean -f && git checkout -- ${dir}
 function clean {
 	default_dir="public"
