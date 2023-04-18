@@ -72,7 +72,9 @@ alias reset="git reset -p"
 alias clone="git clone"
 alias log="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %C(Normal)%s%Creset %C(white)(%cr) %Creset' --abbrev-commit"
 alias stash="git stash"
+alias stsh="stash"
 alias unstash="git stash pop"
+alias ustsh="unstash"
 rbi() {
   git rebase -i HEAD~$1
 }
