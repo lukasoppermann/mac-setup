@@ -27,13 +27,14 @@ brew bundle
 ### 3. Backup apps via homebrew
 To create a bundle file run `brew bundle dump`. However `casks` are not added. It is better to edit the [`Brewfile`](./Brewfile) by hand.
 
-## Zsh (prezto)
-Run the [prezto](https://github.com/sorin-ionescu/prezto) installer from within this directory.
+## Zsh (pure)
+[Pure](https://github.com/sindresorhus/pure) is installed via homebrew with the [`Brewfile`](./Brewfile) from this package. If you want to install it manually run `brew install pure`.
 
-```shell
-zsh install_prezto.sh
+Once installed you must add the following line to ~/.zshrc. Replace `Repos/mac-setup` with the correct location on your machine.
+
+```sh
+source "$HOME/Repos/mac-setup/zsh/.zshrc"
 ```
-If needed, update the `path_zshconfig_folder` in the `~/.zshrc` afterwards. It must point to the `zsh` folder in this directory.
 
 ## Keyboard remapping
 **Create file**

@@ -1,0 +1,176 @@
+#controlUI {
+  display: block;
+  float: left;
+  border-radius: 4px;
+  background-color: var(--bgColor-inverse);
+  position: sticky;
+  width: 64px;
+  bottom: 24px;
+  margin-left: 24px;
+  z-index: 999;
+  box-shadow: var(--shadow-floating-large);
+  & > button {
+    border-radius: 4px;
+    color: var(--fgColor-onInverse);
+    min-width: 20px;
+    background: none;
+    border: none;
+    font-weight: bold;
+    height: 32px;
+    width: 32px;
+    &:hover {
+      background: rgba(255,255,255,0.1);
+    }
+  }
+}
+#toastContainer {
+  --toast-width: 410px;
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 999;
+  margin-bottom: -8px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: -8px;
+  width: var(--toast-width);
+  @media screen and (max-width: 450px) {
+    width: calc(100%);
+    padding: 0 16px;
+    right: 0;
+  }
+  & > .toast {
+    max-height: 0;
+    flex: 0;
+    opacity: 0;
+    margin-bottom: 0;
+    z-index: 5;
+    position: relative;
+    border: none;
+    transition: max-height .5s, opacity 0s, margin-top .5s, width .2s;
+    overflow: hidden;
+    border-radius: 6px;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    color: var(--fgColor-onInverse);
+    background-color: var(--bgColor-inverse);
+    box-shadow: var(--shadow-floating-large);
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    &:nth-child(1), &:nth-child(2), &:nth-child(3) {
+      border: 1px solid var(--borderColor-neutral-muted);
+      max-height: 100px;
+      opacity: 1;
+      margin-bottom: 8px;
+      z-index: 15;
+    }
+    &:nth-child(2) {
+      z-index: 10;
+    }
+    &:nth-child(3) {
+      z-index: 5;
+    }
+    &:nth-child(2):not(.containerHovered) {
+      margin-top: -98px;
+      width: calc(100% - 20px);
+    }
+    &:nth-child(3):not(.containerHovered) {
+      margin-top: -98px;
+      width: calc(100% - 40px);
+    }
+    &[data-state="success"] {
+      --icon-bg: color-mix(in srgb, var(--bgColor-success-emphasis), transparent 85%);
+      --icon-fill: var(--fgColor-success-onInverse);
+    }
+    &[data-state="warning"] {
+      --icon-bg: color-mix(in srgb, var(--bgColor-attention-emphasis), transparent 85%);
+      --icon-fill: var(--fgColor-attention-onInverse);
+    }
+    &[data-state="error"] {
+      --icon-bg: color-mix(in srgb, var(--bgColor-danger-emphasis), transparent 85%);
+      --icon-fill: var(--fgColor-danger-onInverse);
+    }
+    & > .text {
+      padding: 16px 0 16px 16px;
+    }
+    & > .icon {
+      flex: 1;
+      display: flex;
+      padding: 16px;
+      fill: var(--icon-fill);
+      background-color: var(--icon-bg);
+      align-items: center;
+      & > svg {
+        pointer-events: none;
+      }
+    }
+    & > .close {
+      padding: 16px;
+      fill: var(--fgColor-onInverse);
+      cursor: pointer;
+      flex: 1;
+      & > svg {
+        pointer-events: none;
+      }
+    }
+  &.remove {
+    transition: max-height .5s .5s, opacity .5s;
+    opacity: 0;
+    max-height: 0;
+  }
+}
+
+.announcement {
+  --button-hover-bg:rgba(0,0,0,0.1);
+  width: 100%;
+  height: 48px; 
+  display: flex;
+  align-items: center;
+  font-weight: normal;
+  padding: 0px 16px;
+  margin: 0;
+  color: var(--fgColor-onEmphasis);
+  & > svg {
+    fill: currentColor;
+    margin-right: 8px;
+  }
+  & > button {
+    background: none;
+    border: none;
+    font-weight: bold;
+    margin-left: auto;
+    color: currentColor;
+    padding: 4px 8px;
+    border-radius: 4px;
+    &:hover {
+      background: var(--button-hover-bg);
+    }
+  }
+  &[data-state="info"] {
+    background: var(--bgColor-accent-emphasis);
+    &.muted {
+      background: var(--bgColor-accent-muted);
+      color: var(--fgColor-accent);
+      --button-hover-bg: color-mix(in srgb, var(--bgColor-accent-emphasis), transparent 85%);
+    }
+  }
+  &[data-state="warning"] {
+    background: var(--bgColor-attention-emphasis);
+    &.muted {
+      background: var(--bgColor-attention-muted);
+      color: var(--fgColor-attention);
+      --button-hover-bg: color-mix(in srgb, var(--bgColor-attention-emphasis), transparent 85%);
+    }
+  }
+  &[data-state="error"] {
+    background: var(--bgColor-danger-emphasis);
+    &.muted {
+      background: var(--bgColor-danger-muted);
+      color: var(--fgColor-danger);
+      --button-hover-bg: color-mix(in srgb, var(--bgColor-danger-emphasis), transparent 85%);
+    }
+  }
+}

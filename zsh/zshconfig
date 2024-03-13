@@ -1,7 +1,10 @@
 # # init prezto
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-fi
+# if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+#   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+# fi
+# load pure prompt
+autoload -U promptinit; promptinit
+prompt pure
 # # load zsh aliases
 path_zshalias="${path_zshconfig_folder}/zshalias"
 if [ -f $path_zshalias ]; then
@@ -21,6 +24,8 @@ setopt AUTO_CD
 zstyle ':completion:*:*:git:*' script $path_zshconfig_folder/.git-completion.bash
 fpath=($path_zshconfig_folder $fpath)
 
+# Showing git stash status
+zstyle :prompt:pure:git:stash show yes
 
 ### Show zsh & version 
 echo Current zsh: $(which zsh) / $(zsh --version)

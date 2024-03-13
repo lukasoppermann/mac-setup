@@ -6,3 +6,4 @@ if [ -f $path_zshconfig ]; then
 else
     echo -e "\e[31;1m404: ${path_zshconfig} not found.\e[0m"
 fi
+

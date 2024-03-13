@@ -7,20 +7,20 @@ tap "homebrew/core"
 brew "node"
 brew "git"
 brew "zsh"
+brew "pure"
 brew "diff-so-fancy"
 # software tools
 cask "1password"
 cask "1password/tap/1password-cli"
-cask "notion"
+cask "obsidian"
 cask "spotify"
 cask "google-drive"
 cask "raycast"
-# cask "alfred"
 # communication
 cask "zoom"
 cask "signal"
-cask "obs"
-# cask "franz"
+# cask "obs"
+cask "opal-composer"
 cask "slack"
 cask "clipgrab"
 # browsers
@@ -28,21 +28,18 @@ cask "google-chrome"
 cask "firefox"
 # code
 cask "visual-studio-code"
-cask "fig"
-cask "iterm2"
+cask "codewhisperer" # previous fig
+# cask "iterm2"
 # design tools
 cask "sim-daltonism" # color blindness simulator
 # cask "contraste" # color contrast checker
 cask "figma"
-# cask "sketch"
-# cask "abstract" # sketch versioning
-# cask "zeplin"
 cask "affinity-publisher"
 cask "affinity-photo"
 cask "affinity-designer"
 # tools
 # cask "macmediakeyforwarder" # allows spotify to react to play and pause buttons (deprecated)
-cask "beardedspice" # allows spotify to react to play and pause buttons
+cask "reflex" # allows spotify to react to play and pause buttons
 cask "lulu" # similiar to little snitch
 # cask "ukelele" # create custom keyboard layouts
 # cask "obs" # to connect EOS camera to webex

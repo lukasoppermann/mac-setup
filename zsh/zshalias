@@ -27,6 +27,8 @@ alias reload="source ~/.zshrc"
 alias repos="cd ~/repos"
 alias repo="cd ~/repos"
 alias github="cd ~/GitHub"
+# open in vscode-insiders instead of vscode
+alias code="code-insiders"
 # open in vscode
 alias vs="code -r ."
 # better open
@@ -72,9 +74,9 @@ alias reset="git reset -p"
 alias clone="git clone"
 alias log="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %C(Normal)%s%Creset %C(white)(%cr) %Creset' --abbrev-commit"
 alias stash="git stash"
-alias stsh="stash"
+alias ss="stash"
 alias unstash="git stash pop"
-alias ustsh="unstash"
+alias uss="unstash"
 rbi() {
   git rebase -i HEAD~$1
 }
@@ -112,7 +114,10 @@ function push {
     git push origin $current_branch
   fi
 }
-alias pfn="git push origin $(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/') --force --no-verify"
+function pfn {
+  current_branch=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
+  git push --force --no-verify origin $current_branch
+}
 # delete branch
 function : {
 	if [[ ! -z "$1" ]]; then
