@@ -40,7 +40,8 @@ cask "affinity-designer"
 # tools
 # cask "macmediakeyforwarder" # allows spotify to react to play and pause buttons (deprecated)
 cask "reflex" # allows spotify to react to play and pause buttons
-cask "lulu" # similiar to little snitch
+# cask "lulu" # similiar to little snitch
+cask "finicky" # open links in the right browser use config file from this repo
 # cask "ukelele" # create custom keyboard layouts
 # cask "obs" # to connect EOS camera to webex
 # Quicklook plugins

@@ -7,16 +7,21 @@
 4. Search for `Ligatures` and open the settings.json
 5. Make sure it says `"editor.fontLigatures": true`
 6. Restart VS Code and enjoy
+
 ## Git
+
 ### Avoid having to force push for not setup branches
 ```sh
 git config --global --add --bool push.autoSetupRemote true
 ```
+
 ## Homebrew & apps
+
 ### 1. Install Homebrew
 ```sh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 ```
+
 ### 2. Install apps via homebrew
 Run `brew bundle` from within this directory to install all apps form the [`Brewfile`](./Brewfile).
 
@@ -65,6 +70,7 @@ Restart app to activate commands
 More info:
 - https://gist.github.com/trusktr/1e5e516df4e8032cbc3d
 - https://blog.victormendonca.com/2020/04/27/how-to-change-macos-key-bindings/
+
 ## Activate additional fonts
 Mac OS Catalina comes with some high quality fonts that are not activated by default, an exhaustive list can be found on [support.apple.com](https://support.apple.com/en-us/HT210192). 
 
