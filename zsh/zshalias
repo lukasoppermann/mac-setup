@@ -28,17 +28,9 @@ alias repos="cd ~/repos"
 alias repo="cd ~/repos"
 alias github="cd ~/GitHub"
 # open in vscode-insiders instead of vscode
-alias code="code-insiders"
 # open in vscode
 alias vs="code -r ."
-# better open
-function open () {
-  if [ -z "$1" ]; then
-    command code -r .
-  else
-    /usr/bin/open $1
-  fi
-}
+alias open="vs" 
 # better cd that moves to paretn dir of file
 # smart cd function, allows switching to /etc when running 'cd /etc/fstab'
 # also ls directory content when cd or when cd failed
@@ -157,28 +149,13 @@ function clean {
 	git clean -f
 	git checkout -- ${clean_dir}
 }
-#######################
-#
-# NPM ################
-#
-function npm {
-	var_npm="/usr/local/bin/npm"
-	if [[ $1 == "update" ]] || [[ $1 == "up" ]] ; then
-		$var_npm update
-	elif [[ $1 == "outdated" ]] || [[ $1 == "out" ]] ; then
-		$var_npm outdated -l
-	elif [[ $1 == "" ]] ; then
-		$var_npm run && $var_npm
-	else
-		/usr/local/bin/npm "$@"
-	fi
-}
-#######################
+###############
 #
 # Remove current branch ################
 rmb () {
   branch_to_delete=$(git rev-parse --abbrev-ref HEAD)
-  main_branch=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
+  # main_branch=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
+    main_branch=$(git remote show origin | grep 'HEAD branch' | cut -d ' ' -f5)
   git checkout $main_branch
   git branch -D $branch_to_delete
 }

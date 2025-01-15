@@ -30,6 +30,11 @@ To create a bundle file run `brew bundle dump`. However `casks` are not added. I
 ## Zsh (pure)
 [Pure](https://github.com/sindresorhus/pure) is installed via homebrew with the [`Brewfile`](./Brewfile) from this package. If you want to install it manually run `brew install pure`.
 
+If you're not using ZSH from Homebrew (brew install zsh and $(brew --prefix)/bin/zsh), you must also add the site-functions to your fpath in $HOME/.zshrc:
+```sh
+fpath+=("$(brew --prefix)/share/zsh/site-functions")
+```
+
 Once installed you must add the following line to ~/.zshrc. Replace `Repos/mac-setup` with the correct location on your machine.
 
 ```sh
