@@ -22,36 +22,36 @@ cask "signal"
 # cask "obs"
 cask "opal-composer"
 cask "slack"
-cask "clipgrab"
+cask "4k-video-downloader+"
+cask "vlc"
 # browsers
 cask "google-chrome"
 cask "firefox"
+# eBooks
+cask "calibre"
+cask "adobe-digital-editions"
 # code
 cask "visual-studio-code"
 cask "codewhisperer" # previous fig
-# cask "iterm2"
 # design tools
 cask "sim-daltonism" # color blindness simulator
-# cask "contraste" # color contrast checker
 cask "figma"
 cask "affinity-publisher"
 cask "affinity-photo"
 cask "affinity-designer"
+cask "cleanshot"
 # tools
-# cask "macmediakeyforwarder" # allows spotify to react to play and pause buttons (deprecated)
+cask "opal-composer"
+cask "elgato-control-center"
 cask "reflex" # allows spotify to react to play and pause buttons
+cask "logi-options+"
 # cask "lulu" # similiar to little snitch
 cask "finicky" # open links in the right browser use config file from this repo
-# cask "ukelele" # create custom keyboard layouts
-# cask "obs" # to connect EOS camera to webex
 # Quicklook plugins
 cask "qlcolorcode" # quicklook syntax highlight
 cask "qlstephen" # quicklook view text files without extensions
-# cask "qlmarkdown"
 cask "qlmarkdown"
 cask "quicklook-json"
-# cask "qlprettypatch"
 cask "quicklook-csv"
 cask "betterzip"
 cask "webpquicklook"
-# cask "suspicious-package" # show appe package content in quicklook
