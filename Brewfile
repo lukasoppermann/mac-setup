@@ -18,9 +18,9 @@ cask "raycast"
 cask "google-chrome"
 cask "firefox"
 # essentials
+cask "figma"
 cask "visual-studio-code"
 cask "codewhisperer" # previous fig
-cask "figma"
 cask "font-fira-code"
 # communication
 cask "zoom"
