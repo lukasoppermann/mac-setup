@@ -1,6 +1,4 @@
 tap "homebrew/bundle"
-tap "homebrew/cask"
-tap "homebrew/core"
 # brew "htop"
 # brew "mkcert"
 # brew "nss"
@@ -16,6 +14,14 @@ cask "obsidian"
 cask "spotify"
 cask "google-drive"
 cask "raycast"
+# browsers
+cask "google-chrome"
+cask "firefox"
+# essentials
+cask "visual-studio-code"
+cask "codewhisperer" # previous fig
+cask "figma"
+cask "font-fira-code"
 # communication
 cask "zoom"
 cask "signal"
@@ -24,18 +30,11 @@ cask "opal-composer"
 cask "slack"
 cask "4k-video-downloader+"
 cask "vlc"
-# browsers
-cask "google-chrome"
-cask "firefox"
 # eBooks
 cask "calibre"
 cask "adobe-digital-editions"
-# code
-cask "visual-studio-code"
-cask "codewhisperer" # previous fig
 # design tools
 cask "sim-daltonism" # color blindness simulator
-cask "figma"
 cask "affinity-publisher"
 cask "affinity-photo"
 cask "affinity-designer"
