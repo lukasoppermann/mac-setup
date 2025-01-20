@@ -1,12 +1,5 @@
 # The perfect setup
 
-## Git
-
-### Avoid having to force push for not setup branches
-```sh
-git config --global --add --bool push.autoSetupRemote true
-```
-
 ## Homebrew & apps
 
 ### 1. Install Homebrew
@@ -22,6 +15,30 @@ Run `brew bundle` from **within this directory** to install all apps form the [`
 ```sh
 brew bundle
 ```
+
+## Git
+
+### Avoid having to force push for not setup branches
+```sh
+git config --global --add --bool push.autoSetupRemote true
+```
+
+### Set VS Code as default editor for rebase
+```sh
+# general default editor
+git config --global core.editor "code --wait"
+# default diff tool
+git config --global diff.tool vscode
+git config --global difftool.vscode.cmd 'code --wait --diff $LOCAL $REMOTE'
+# default merge tool
+git config --global merge.tool vscode
+git config --global mergetool.vscode.cmd 'code --wait $MERGED'
+```
+
+To verify, run
+```sh
+ git config --global -e 
+ ```
 
 ## Zsh (pure)
 **This should all work automatically.**

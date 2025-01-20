@@ -14,14 +14,15 @@ module.exports = {
       match: [
         "to-do.live.com/*",
         "linkedin.com/*",
-        "twitter.com/*"
+        "twitter.com/*",
+        "bsky.app/*",
       ],
       browser: {
         name: "Google Chrome",
         profile: "Default",
       },
     },
-   
+
     // ------------
     // Work
     {
@@ -29,19 +30,19 @@ module.exports = {
         "github.com/primer/*",
         "github.com/github/*",
         "primer.style/*",
-        "https://docs.google.com/document/d/1z2f7xkzoRGlNFr2z9XtoAogtnveYwZQBhuB-AgsiKLs/edit"
+        "https://docs.google.com/document/d/1z2f7xkzoRGlNFr2z9XtoAogtnveYwZQBhuB-AgsiKLs/edit",
       ],
       browser: {
         name: "Google Chrome",
-        profile: "Profile 1",
+        profile: "Profile 2", // find the profile by going to chrome://version/ in the profile and looking for the "Profile Path" field
       },
     },
     {
       match: ({ opener }) => ["Slack"].includes(opener.name),
-        browser: {
-          name: "Google Chrome",
-          profile: "Profile 1",
-        },
+      browser: {
+        name: "Google Chrome",
+        profile: "Profile 2", // find the profile by going to chrome://version/ in the profile and looking for the "Profile Path" field
+      },
     },
     // ------------
     // Apps
@@ -51,7 +52,7 @@ module.exports = {
     },
     {
       match: "open.spotify.com/*",
-      browser: "Spotify"
+      browser: "Spotify",
     },
     {
       match: [
@@ -59,17 +60,19 @@ module.exports = {
         finicky.matchDomains(/.*\zoom.us\/j/),
         /zoom.us\/j\//,
       ],
-      browser: "us.zoom.xos"
+      browser: "us.zoom.xos",
     },
     {
       match: "https://www.figma.com/file/*",
       browser: "Figma",
-    }
-  ],
-  rewrite: [{
-    match: "amazon.com/*",
-    url: {
-        host: "smile.amazon.com"
     },
-  }]
+  ],
+  rewrite: [
+    {
+      match: "amazon.com/*",
+      url: {
+        host: "smile.amazon.com",
+      },
+    },
+  ],
 };
