@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>EnvironmentVariables</key>
+    <dict>
+      <key>PATH</key>
+      <string>/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:</string>
+      <key>elgato_ip</key>
+      <string>192.168.178.22</string>
+      <key>number_of_lights</key>
+      <string>1</string>
+    </dict>
+    <dict>
+      <key>PATH</key>
+      <string>/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:</string>
+      <key>elgato_ip</key>
+      <string>192.168.178.28</string>
+      <key>number_of_lights</key>
+      <string>1</string>
+    </dict>
+    <key>GroupName</key>
+    <string>wheel</string>
+    <key>Label</key>
+    <string>com.keylight</string>
+    <key>ProgramArguments</key>
+    <array>
+      <string>sh</string>
+      <string>-c</string>
+      <string>/Users/<REPLACE_USER>/bin/onair.sh</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>StandardErrorPath</key>
+    <string>/tmp/keylight.stderr</string>
+    <key>StandardOutPath</key>
+    <string>/tmp/keylight.stdout</string>
+    <key>UserName</key>
+    <string>root</string>
+  </dict>
+</plist>
