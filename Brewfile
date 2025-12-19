@@ -54,6 +54,7 @@ cask "quicklook-json"
 cask "quicklook-csv"
 cask "betterzip"
 cask "webpquicklook"
+cask "syntax-highlight"
 # fonts
 cask "font-inter"
 cask "font-ibm-plex"
