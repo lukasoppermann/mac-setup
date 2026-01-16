@@ -149,6 +149,8 @@ function clean {
 	git clean -f
 	git checkout -- ${clean_dir}
 }
+
+alias cop="copilot --allow-all-tools"
 ###############
 #
 # Remove current branch ################
