@@ -19,5 +19,5 @@ In the `.plist` the username and the ips for the ligths must be repalced.
 cp com.keylight.daemon.plist /Library/LaunchDaemons/com.keylight.daemon.plist
 
 # run
-sudo launchctl load -w /Library/LaunchDaemons/com.keylight.daemon.plist  
+sudo launchctl load -w /Library/LaunchDaemons/com.keylight.daemon.plist
 ```
