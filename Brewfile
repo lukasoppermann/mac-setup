@@ -2,7 +2,7 @@ tap "homebrew/bundle"
 # brew "htop"
 # brew "mkcert"
 # brew "nss"
-brew "fnm"
+brew "fnm" # node version manager instead of nvm or homebrew's node version manager
 brew "git"
 brew "zsh"
 brew "pure"
