@@ -150,14 +150,6 @@ function pfn {
   git push --force --no-verify origin $current_branch
 }
 # delete branch
-function : {
-	if [[ ! -z "$1" ]]; then
-    git push origin :$1
-    if [[ ($2 == "-b") ]]; then
-      git branch -D $1
-    fi
-  fi
-}
 # replace diff with diff so fancy
 function diff {
 	if [[ ! -z "$1" ]]; then
@@ -190,15 +182,22 @@ function clean {
 }
 
 alias cop="copilot --yolo"
-###############
-#
-# Remove current branch ################
+# remove branch: no args = current branch (local only), with arg = delete remote with confirmation
 rmb () {
-  branch_to_delete=$(git rev-parse --abbrev-ref HEAD)
-  # main_branch=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
+  if [[ -n "$1" ]]; then
+    echo -n "Delete remote branch '$1'? (y/n) "
+    read -r confirm
+    if [[ "$confirm" == "y" ]]; then
+      git push origin --delete "$1"
+    else
+      echo "Aborted."
+    fi
+  else
+    branch_to_delete=$(git rev-parse --abbrev-ref HEAD)
     main_branch=$(git remote show origin | grep 'HEAD branch' | cut -d ' ' -f5)
-  git checkout $main_branch
-  git branch -D $branch_to_delete
+    git checkout "$main_branch"
+    git branch -D "$branch_to_delete"
+  fi
 }
 ########################
 #

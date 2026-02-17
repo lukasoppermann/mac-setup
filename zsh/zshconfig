@@ -1,34 +1,30 @@
-# # init prezto
-# if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-#   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-# fi
 # load pure prompt
 autoload -U promptinit; promptinit
 prompt pure
-# # load zsh aliases
+
+# load zsh aliases
 path_zshalias="${path_zshconfig_folder}/zshalias"
-if [ -f $path_zshalias ]; then
-    source $path_zshalias
+if [ -f "$path_zshalias" ]; then
+    source "$path_zshalias"
 else
     echo -e "\e[31;1m404: ${path_zshalias} not found.\e[0m"
 fi
 
-# # disable autocorrect in zsh
+# disable autocorrect in zsh
 unsetopt correct_all
 unsetopt correct
 
 # why would you type 'cd dir' if you could just type 'dir'?
 setopt AUTO_CD
 
-# Add git auto-completion (git-completion files need to be downloaded)
-zstyle ':completion:*:*:git:*' script $path_zshconfig_folder/.git-completion.bash
-fpath=($path_zshconfig_folder $fpath)
+# init completion system (Homebrew provides git completions via site-functions)
+autoload -Uz compinit && compinit -C
 
-# Showing git stash status
+# show git stash status in pure prompt
 zstyle :prompt:pure:git:stash show yes
 
-### Show zsh & version 
-echo Current zsh: $(which zsh) / $(zsh --version)
+# fnm (fast node manager)
+eval "$(fnm env --use-on-cd --shell zsh --log-level quiet)"
 
 # Link global AGENTS MD file
 export COPILOT_CUSTOM_INSTRUCTIONS_DIRS="$HOME/Repos/mac-setup"
