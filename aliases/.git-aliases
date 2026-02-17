@@ -15,3 +15,19 @@ alias rbc="git rebase --continue"
 alias abort="git rebase --abort"
 alias reset="git reset -p"
 alias log="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %C(Normal)%s%Creset %C(white)(%cr) %Creset' --abbrev-commit"
+
+# add file to .gitignore and commit the change
+ignore() {
+  if [ -z "$1" ]; then
+    echo "Usage: ignore <filename>"
+    return 1
+  fi
+  if [ ! -e "$1" ]; then
+    echo "File '$1' does not exist."
+    return 1
+  fi
+  echo "$1" >> .gitignore
+  git add .gitignore
+  git commit -m "Add $1 to .gitignore"
+  git rm --cached "$1" 2>/dev/null
+}

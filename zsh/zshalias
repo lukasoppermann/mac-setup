@@ -69,6 +69,22 @@ alias stash="git stash"
 alias ss="stash"
 alias unstash="git stash pop"
 alias uss="unstash"
+
+alias cn="cn --config ~/.continue/config.yaml"
+# worktree via @johnlindquist/worktree
+wt() {
+  if [[ "$1" == "new" ]]; then
+    # your custom behavior
+    command wt setup "${@:2}" --trust
+  else
+    # fall back to original
+    command wt "$@"
+  fi
+}
+wtn() {
+  command wt setup "$@" --trust
+}
+
 rbi() {
   git rebase -i HEAD~$1
 }
@@ -80,6 +96,29 @@ cmn() {
 		msg=$message
 	fi
 	git commit -nm "$msg"
+}
+# add file to .gitignore and commit the change
+ignore() {
+  if [ -z "$1" ]; then
+    echo "Usage: ignore <filename>"
+    return 1
+  fi
+  if [ ! -e "$1" ]; then
+    echo "File '$1' does not exist."
+    return 1
+  fi
+  echo "$1" >> .gitignore
+  git add .gitignore
+  git commit -m "Add $1 to .gitignore"
+  git rm --cached "$1" 2>/dev/null
+}
+# git restore with "all" option
+re() {
+  if [ "$1" = "all" ]; then
+    git restore .
+  else
+    git restore "$@"
+  fi
 }
 # git checkout -m with required message
 function cm {
@@ -150,7 +189,7 @@ function clean {
 	git checkout -- ${clean_dir}
 }
 
-alias cop="copilot --allow-all-tools"
+alias cop="copilot --yolo"
 ###############
 #
 # Remove current branch ################

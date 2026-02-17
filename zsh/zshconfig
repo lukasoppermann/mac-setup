@@ -29,3 +29,6 @@ zstyle :prompt:pure:git:stash show yes
 
 ### Show zsh & version 
 echo Current zsh: $(which zsh) / $(zsh --version)
+
+# Link global AGENTS MD file
+export COPILOT_CUSTOM_INSTRUCTIONS_DIRS="$HOME/Repos/mac-setup"
