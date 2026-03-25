@@ -22,7 +22,7 @@ grep -E --line-buffered '(stop|start) stream' | # filter log events
       keylight on --elgato-ip "$Light_1" --number-of-lights 1
       keylight on --elgato-ip "$Light_2" --number-of-lights 1
       say -v Samantha "Adjust your microphone" &
-      osascript -e 'beep' -e 'display dialog "🎙️ Adjust your microphone!" buttons {"OK"} default button 1 with title "Adjust microphone" with icon file "System:Library:CoreServices:CoreTypes.bundle:Contents:Resources:AlertStopIcon.icns" giving up after 20'
+      osascript -e 'beep'
     else
       # echo "Keylight off"
       keylight off --elgato-ip "$Light_1" --number-of-lights 1
