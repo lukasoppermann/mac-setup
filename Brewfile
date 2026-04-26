@@ -15,6 +15,7 @@ cask "obsidian"
 cask "spotify"
 cask "google-drive"
 cask "raycast"
+cask "ghostty"
 # browsers
 cask "google-chrome"
 cask "firefox"
