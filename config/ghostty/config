@@ -1,0 +1,35 @@
+# Colors (Miasma)
+background = #232221
+foreground = #D3CAAA
+selection-background = #e5c47b
+selection-foreground = #000000
+unfocused-split-fill = #0D0D0C
+cursor-color = #c7c7c7
+cursor-text = #99eeee
+palette = 0=#000000
+palette = 1=#685742
+palette = 2=#5f875f
+palette = 3=#b36d43
+palette = 4=#78824b
+palette = 5=#bb7744
+palette = 6=#c9a554
+palette = 7=#d7c483
+palette = 8=#666666
+palette = 9=#685742
+palette = 10=#5f875f
+palette = 11=#b36d43
+palette = 12=#78824b
+palette = 13=#bb7744
+palette = 14=#c9a554
+palette = 15=#d7c483
+
+# Quick terminal
+keybind = global:ctrl+grave_accent=toggle_quick_terminal
+
+# Navigate splits
+keybind = cmd+one=goto_split:previous
+keybind = cmd+two=goto_split:next
+
+unfocused-split-opacity = 0.5
+macos-icon = xray
+macos-hidden = always

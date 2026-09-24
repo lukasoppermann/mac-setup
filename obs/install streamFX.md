@@ -1,1 +1,0 @@
-https://github.com/Xaymar/obs-StreamFX/releases

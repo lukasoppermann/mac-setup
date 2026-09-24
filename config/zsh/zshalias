@@ -27,10 +27,6 @@ alias reload="source ~/.zshrc"
 alias repos="cd ~/repos"
 alias repo="cd ~/repos"
 alias github="cd ~/GitHub"
-# open in vscode-insiders instead of vscode
-# open in vscode
-alias vs="code -r ."
-alias open="vs" 
 # better cd that moves to paretn dir of file
 # smart cd function, allows switching to /etc when running 'cd /etc/fstab'
 # also ls directory content when cd or when cd failed
@@ -57,7 +53,6 @@ alias ck="git checkout"
 alias add="git add"
 alias add.="git add ."
 alias tags="git tag -l | sort -V" 
-alias pull="git pull"
 alias rebase="git rebase -i"
 alias rb="git rebase"
 alias rbc="git rebase --continue"
@@ -70,7 +65,6 @@ alias ss="stash"
 alias unstash="git stash pop"
 alias uss="unstash"
 
-alias cn="cn --config ~/.continue/config.yaml"
 # worktree via @johnlindquist/worktree
 wt() {
   if [[ "$1" == "new" ]]; then
@@ -145,6 +139,15 @@ function push {
     git push origin $current_branch
   fi
 }
+function pull {
+  if [[ "$1" == "-b" ]]; then
+    local branch
+    branch=$(git symbolic-ref --short HEAD) || return
+    git branch --set-upstream-to="origin/$branch" "$branch" && git pull
+  else
+    git pull "$@"
+  fi
+}
 function pfn {
   current_branch=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
   git push --force --no-verify origin $current_branch
@@ -181,7 +184,6 @@ function clean {
 	git checkout -- ${clean_dir}
 }
 
-alias cop="copilot --yolo"
 # remove branch: no args = current branch (local only), with arg = delete remote with confirmation
 rmb () {
   if [[ -n "$1" ]]; then

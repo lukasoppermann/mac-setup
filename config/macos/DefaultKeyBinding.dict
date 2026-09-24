@@ -1,0 +1,4 @@
+{
+  /* Ctrl + numpad . => , */
+  "~#." = ("insertText:", ",");
+}
