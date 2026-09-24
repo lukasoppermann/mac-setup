@@ -24,7 +24,6 @@ autoload -Uz compinit && compinit -C
 zstyle :prompt:pure:git:stash show yes
 
 # fnm (fast node manager)
-eval "$(fnm env --use-on-cd --shell zsh --log-level quiet)"
-
-# Link global AGENTS MD file
-export COPILOT_CUSTOM_INSTRUCTIONS_DIRS="$HOME/Repos/mac-setup"
+if command -v fnm >/dev/null 2>&1; then
+    eval "$(fnm env --use-on-cd --shell zsh --log-level quiet)"
+fi
