@@ -22,9 +22,18 @@ destinations=(
     "$HOME/.copilot/AGENTS.md"
 )
 
+for skill in "$repo"/config/copilot/skills/*; do
+    if [[ ! -d "$skill" || -L "$skill" || ! -f "$skill/SKILL.md" ]]; then
+        printf 'Invalid skill directory: %s\n' "$skill" >&2
+        exit 1
+    fi
+    sources+=("$skill")
+    destinations+=("$HOME/.copilot/skills/${skill##*/}")
+done
+
 conflict=0
 for i in "${!sources[@]}"; do
-    if [[ ! -f "${sources[$i]}" ]]; then
+    if [[ ! -f "${sources[$i]}" && ! -d "${sources[$i]}" ]]; then
         printf 'Missing source: %s\n' "${sources[$i]}" >&2
         conflict=1
     fi
