@@ -1,55 +1,48 @@
 tap "homebrew/bundle"
-# brew "htop"
-# brew "mkcert"
-# brew "nss"
-brew "fnm" # node version manager instead of nvm or homebrew's node version manager
-brew "git"
-brew "zsh"
-brew "pure"
+
+# Shell and development tools
+brew "actionlint"
+brew "bun"
 brew "diff-so-fancy"
 brew "ffmpeg"
-# software tools
+brew "fnm"
+brew "gh"
+brew "git"
+brew "gitleaks"
+brew "htop"
+brew "pure"
+brew "shellcheck"
+brew "uv"
+brew "wget"
+brew "zsh"
+
+# Everyday apps
 cask "1password"
-cask "1password/tap/1password-cli"
-cask "obsidian"
-cask "spotify"
-cask "google-drive"
-cask "raycast"
-cask "ghostty"
-# browsers
-cask "google-chrome"
-cask "firefox"
-# essentials
-cask "figma"
-cask "visual-studio-code"
-# cask "kiro-cli" # previous fig
-# communication
-cask "signal"
-# cask "obs"
-cask "opal-composer"
-cask "slack"
-cask "vlc"
-# eBooks
-cask "calibre"
-cask "adobe-digital-editions"
-# design tools
-cask "sim-daltonism" # color blindness simulator
+cask "1password-cli"
+cask "arc"
 cask "cleanshot"
-# tools
-cask "opal-composer"
-cask "elgato-control-center"
-cask "reflex-app" # allows spotify to react to play and pause buttons
-cask "logi-options+"
-# cask "lulu" # similiar to little snitch
-cask "finicky" # open links in the right browser use config file from this repo
-# Quicklook plugins
-cask "qlmarkdown"
-cask "betterzip"
-cask "syntax-highlight"
-# fonts
-cask "font-inter"
-cask "font-ibm-plex-mono"
-cask "font-ibm-plex-serif"
-cask "font-ibm-plex-sans"
-cask "font-league-gothic"
+cask "copilot-cli"
+cask "figma"
+cask "finicky"
+cask "firefox"
+cask "ghostty"
+cask "google-chrome"
+cask "obsidian"
+cask "raycast"
+cask "signal"
+cask "spotify"
+cask "vlc"
+
+# Design tools and fonts
 cask "font-fira-code"
+cask "font-ibm-plex-mono"
+cask "font-ibm-plex-sans"
+cask "font-ibm-plex-serif"
+cask "font-inter"
+cask "font-league-gothic"
+cask "font-source-sans-3"
+cask "sim-daltonism"
+
+# Quick Look
+cask "qlmarkdown"
+cask "syntax-highlight"
