@@ -55,8 +55,11 @@ checkout:
 
 The installer does not create or link `~/.zshrc.local`.
 
-The Copilot links include only the global `AGENTS.md` and the seven regular
-skill folders present when this setup was created. The local `skill-creator`
+The Copilot links include only the global `AGENTS.md` and seven skill folders
+curated from this Mac. The former `issue-contract` skill is installed as
+`issue`. The installer leaves any existing `~/.copilot/skills/issue-contract`
+folder alone; review and remove it manually if you no longer need it.
+The local `skill-creator`
 symlink points outside `~/.copilot/skills` and is not migrated. Do not copy or
 link the entire `~/.copilot` directory, which holds sessions and authentication
 data. If your Copilot app settings prompt points at the global instructions,

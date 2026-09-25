@@ -1,5 +1,5 @@
 ---
-name: issue-contract
+name: issue
 description: Turn a /issue request into a GitHub issue that acts as the contract for the work, before any code is written.
 user-invocable: true
 disable-model-invocation: false

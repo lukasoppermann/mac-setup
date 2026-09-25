@@ -118,7 +118,7 @@ sequential headline: "Prompt 1: ...", "Prompt 2: ...".
 
 # Issue-first gate
 
-When I write `/issue`, load the `issue-contract` skill and follow it. Do not
+When I write `/issue`, load the `issue` skill and follow it. Do not
 trigger this workflow based on prompt length, request size, or perceived
 complexity.
 

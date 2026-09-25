@@ -26,6 +26,8 @@ for skill in "$repo"/config/copilot/skills/*; do
     [[ $(readlink "$fixture/clean/.copilot/skills/$name") == "$skill" ]]
     [[ -f "$fixture/clean/.copilot/skills/$name/SKILL.md" ]]
 done
+[[ -L "$fixture/clean/.copilot/skills/issue" ]]
+[[ ! -e "$fixture/clean/.copilot/skills/issue-contract" ]]
 [[ $(cat "$fixture/clean/.copilot/skills/existing/SKILL.md") == 'keep this skill' ]]
 HOME="$fixture/clean" bash "$repo/scripts/install.sh" >/dev/null
 
