@@ -30,4 +30,13 @@ export default {
       browser: "Figma",
     },
   ],
+  rewrite: [
+    {
+      match: "amazon.com/*",
+      url: (url) => {
+        url.host = "smile.amazon.com";
+        return url;
+      },
+    },
+  ],
 };
