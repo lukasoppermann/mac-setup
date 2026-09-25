@@ -2,7 +2,7 @@
 
 This repo contains a curated Homebrew bundle and portable settings in
 [`config/`](./config/) for Zsh, Finicky, Ghostty, macOS keyboard bindings, and
-Copilot's global `AGENTS.md`.
+Copilot's global `AGENTS.md` and skills.
 It does not migrate accounts, credentials, app data, Git identity, editor
 settings, other AI tools, or company-managed apps.
 
@@ -21,12 +21,15 @@ settings, other AI tools, or company-managed apps.
 `scripts/install.sh` links five individual files into your home directory:
 `~/.zshrc`, `~/.finicky.js`, `~/.config/ghostty/config`,
 `~/Library/KeyBindings/DefaultKeyBinding.dict`, and
-`~/.copilot/AGENTS.md`. Links point to the resolved checkout location, so
-keep the checkout in place. The script creates missing parent directories,
-never replaces them, and can be run again without changing its own links.
+`~/.copilot/AGENTS.md`. It also links each skill folder in
+[`config/copilot/skills/`](./config/copilot/skills/) into `~/.copilot/skills/`.
+Links point to the resolved checkout location, so keep the checkout in place.
+The script creates missing parent directories, never replaces them, and can
+be run again without changing its own links.
 If **any** target already exists, it prints every conflict and makes **no**
 links. Review and move your existing files yourself before retrying. In
-particular, do not discard edits in an existing `~/.zshrc` or `~/.finicky.js`.
+particular, do not discard edits in an existing `~/.zshrc`, `~/.finicky.js`,
+or skill folder. Unrelated installed skills remain untouched.
 
 ## Finish manually
 
@@ -52,7 +55,9 @@ checkout:
 
 The installer does not create or link `~/.zshrc.local`.
 
-The Copilot link contains **only** the global `AGENTS.md` file. Do not copy or
+The Copilot links include only the global `AGENTS.md` and the seven regular
+skill folders present when this setup was created. The local `skill-creator`
+symlink points outside `~/.copilot/skills` and is not migrated. Do not copy or
 link the entire `~/.copilot` directory, which holds sessions and authentication
 data. If your Copilot app settings prompt points at the global instructions,
 set that pointer again on the new Mac. The former

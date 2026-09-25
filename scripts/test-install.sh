@@ -5,7 +5,9 @@ repo=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)
 fixture=$(mktemp -d "${TMPDIR:-/tmp}/mac-setup-test.XXXXXX")
 trap 'rm -rf -- "$fixture"' EXIT
 
-mkdir "$fixture/clean" "$fixture/conflict" "$fixture/parent"
+mkdir "$fixture/clean" "$fixture/conflict" "$fixture/parent" "$fixture/skill-conflict"
+mkdir -p "$fixture/clean/.copilot/skills/existing"
+printf 'keep this skill\n' >"$fixture/clean/.copilot/skills/existing/SKILL.md"
 HOME="$fixture/clean" bash "$repo/scripts/install.sh" >/dev/null
 for pair in \
     "config/zsh/.zshrc:.zshrc" \
@@ -18,7 +20,25 @@ for pair in \
     [[ -L "$fixture/clean/$target_path" ]]
     [[ $(readlink "$fixture/clean/$target_path") == "$repo/$source_path" ]]
 done
+for skill in "$repo"/config/copilot/skills/*; do
+    name=${skill##*/}
+    [[ -L "$fixture/clean/.copilot/skills/$name" ]]
+    [[ $(readlink "$fixture/clean/.copilot/skills/$name") == "$skill" ]]
+    [[ -f "$fixture/clean/.copilot/skills/$name/SKILL.md" ]]
+done
+[[ $(cat "$fixture/clean/.copilot/skills/existing/SKILL.md") == 'keep this skill' ]]
 HOME="$fixture/clean" bash "$repo/scripts/install.sh" >/dev/null
+
+mkdir -p "$fixture/skill-conflict/.copilot/skills/bro"
+printf 'my skill\n' >"$fixture/skill-conflict/.copilot/skills/bro/SKILL.md"
+if HOME="$fixture/skill-conflict" bash "$repo/scripts/install.sh" >"$fixture/output" 2>&1; then
+    printf 'Expected install to refuse a conflicting skill\n' >&2
+    exit 1
+fi
+[[ $(cat "$fixture/skill-conflict/.copilot/skills/bro/SKILL.md") == 'my skill' ]]
+[[ ! -e "$fixture/skill-conflict/.zshrc" ]]
+[[ ! -e "$fixture/skill-conflict/.copilot/skills/weekly" ]]
+grep -q 'Already exists:.*skills/bro' "$fixture/output"
 
 printf 'original\n' >"$fixture/conflict/.zshrc"
 if HOME="$fixture/conflict" bash "$repo/scripts/install.sh" >"$fixture/output" 2>&1; then
