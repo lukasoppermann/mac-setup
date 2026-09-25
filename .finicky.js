@@ -1,7 +1,7 @@
 // Use https://finicky-kickstart.now.sh to generate basic configuration
 // Learn more about configuration options: https://github.com/johnste/finicky/wiki/Configuration
 
-module.exports = {
+export default  {
   defaultBrowser: "Google Chrome",
   options: {
     hideIcon: false,
@@ -30,7 +30,6 @@ module.exports = {
         "github.com/primer/*",
         "github.com/github/*",
         "primer.style/*",
-        "https://docs.google.com/document/d/1z2f7xkzoRGlNFr2z9XtoAogtnveYwZQBhuB-AgsiKLs/edit",
       ],
       browser: {
         name: "Google Chrome",
@@ -55,14 +54,6 @@ module.exports = {
       browser: "Spotify",
     },
     {
-      match: [
-        "zoom.us/j/*",
-        finicky.matchDomains(/.*\zoom.us\/j/),
-        /zoom.us\/j\//,
-      ],
-      browser: "us.zoom.xos",
-    },
-    {
       match: "https://www.figma.com/file/*",
       browser: "Figma",
     },
@@ -70,8 +61,9 @@ module.exports = {
   rewrite: [
     {
       match: "amazon.com/*",
-      url: {
-        host: "smile.amazon.com",
+      url: (url) => {
+        url.host = "smile.amazon.com";
+        return url;
       },
     },
   ],

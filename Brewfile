@@ -22,43 +22,32 @@ cask "firefox"
 # essentials
 cask "figma"
 cask "visual-studio-code"
-cask "codewhisperer" # previous fig
+# cask "kiro-cli" # previous fig
 # communication
-cask "zoom"
 cask "signal"
 # cask "obs"
 cask "opal-composer"
 cask "slack"
-cask "4k-video-downloader+"
 cask "vlc"
 # eBooks
 cask "calibre"
 cask "adobe-digital-editions"
 # design tools
 cask "sim-daltonism" # color blindness simulator
-cask "affinity-publisher"
-cask "affinity-photo"
-cask "affinity-designer"
 cask "cleanshot"
 # tools
 cask "opal-composer"
 cask "elgato-control-center"
-cask "reflex" # allows spotify to react to play and pause buttons
+cask "reflex-app" # allows spotify to react to play and pause buttons
 cask "logi-options+"
 # cask "lulu" # similiar to little snitch
 cask "finicky" # open links in the right browser use config file from this repo
 # Quicklook plugins
-cask "qlcolorcode" # quicklook syntax highlight
-cask "qlstephen" # quicklook view text files without extensions
 cask "qlmarkdown"
-cask "quicklook-json"
-cask "quicklook-csv"
 cask "betterzip"
-cask "webpquicklook"
 cask "syntax-highlight"
 # fonts
 cask "font-inter"
-cask "font-ibm-plex"
 cask "font-ibm-plex-mono"
 cask "font-ibm-plex-serif"
 cask "font-ibm-plex-sans"
