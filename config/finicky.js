@@ -30,6 +30,19 @@ export default {
       },
     },
     {
+      match: [
+        "microsofteur-my.sharepoint.com/*",
+        "primer.style/*",
+        "github.com/github/*",
+        "github.com/primer/*",
+      ],
+      browser: {
+        name: "Google Chrome",
+        profile: "Profile 2",
+        openInBackground: false,
+      },
+    },
+    {
       match: "open.spotify.com/*",
       browser: "Spotify",
     },
