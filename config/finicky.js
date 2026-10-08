@@ -9,6 +9,14 @@ export default {
   },
   handlers: [
     {
+      match: (_url, { opener }) => opener?.bundleId === "com.tinyspeck.slackmacgap",
+      browser: {
+        name: "Google Chrome",
+        profile: "Profile 2",
+        openInBackground: false,
+      },
+    },
+    {
       match: [
         "to-do.live.com/*",
         "linkedin.com/*",
